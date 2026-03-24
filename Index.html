@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoMetricPro | Advanced Crypto Calculators</title>
+    <meta name="description" content="Calculate your crypto profits, futures leverage, and trading fees easily. Stop guessing and start planning your trades.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
 
+    <!-- NAVBAR (Use this on all pages, adjust paths like ../ if in subfolders) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">CryptoMetric<span>Pro</span></a>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="nav-item">
+                    <a href="#">Tools ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tools/spot.html">Spot Calculator</a></li>
+                        <li><a href="tools/futures.html">Futures Calculator</a></li>
+                        <li><a href="tools/fees.html">Fees Calculator</a></li>
+                    </ul>
+                </li>
+                <li><a href="learn/index.html">Learn</a></li>
+                <li><a href="blog/index.html">Blog</a></li>
+                <li><a href="affiliate.html">Exchanges</a></li>
+                
+                <li>
+                    <select id="currency-selector" class="currency-select">
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <main class="container">
+        <section class="hero">
+            <h1>Calculate Before You Trade</h1>
+            <p>Advanced metrics and position planning for crypto spot and futures markets. Maximize your profits and understand your risks.</p>
+            <a href="tools/spot.html" class="btn">Launch Calculators</a>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="grid-3">
+            <div class="card">
+                <h3>Spot Calculator</h3>
+                <p>Calculate exact profit and loss for your standard spot market trades without needing complex spreadsheets.</p>
+                <a href="tools/spot.html" class="btn">Calculate Spot</a>
+            </div>
+            <div class="card">
+                <h3>Futures & Leverage</h3>
+                <p>Determine margin requirements, leverage limits, and potential ROI for long and short futures positions.</p>
+                <a href="tools/futures.html" class="btn">Calculate Futures</a>
+            </div>
+            <div class="card">
+                <h3>Fee Analyzer</h3>
+                <p>Don't let hidden exchange fees eat your profits. Find out exactly how much a trade costs to open and close.</p>
+                <a href="tools/fees.html" class="btn">Calculate Fees</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER (Use this on all pages) -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>CryptoMetricPro</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Empowering traders with precision metrics.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="tools/spot.html">Spot Calculator</a></li>
+                        <li><a href="tools/futures.html">Futures Calculator</a></li>
+                        <li><a href="tools/fees.html">Fees Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="learn/index.html">Learn Hub</a></li>
+                        <li><a href="blog/index.html">Blog</a></li>
+                        <li><a href="affiliate.html">Best Exchanges</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CryptoMetricPro. All rights reserved. For educational purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="cookie-banner hidden">
+        <p>We use cookies to ensure you get the best experience on our website. Selected preferences are saved locally.</p>
+        <div class="cookie-btns">
+            <button id="accept-cookies" class="btn">Accept</button>
+            <button id="reject-cookies" class="btn btn-outline">Reject</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
