@@ -1,1 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futures Calculator | CryptoMetricPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- INCLUDE NAVBAR HERE -->
 
+    <main class="container">
+        <div class="calc-wrapper card">
+            <h2>Futures PnL Calculator</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Calculate leverage, margin, and ROI.</p>
+
+            <div class="input-group radio-group">
+                <label><input type="radio" name="position" value="long" checked> Long</label>
+                <label><input type="radio" name="position" value="short"> Short</label>
+            </div>
+
+            <div class="input-group">
+                <label for="margin">Initial Margin</label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="margin" placeholder="e.g. 500" min="0" step="0.01">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="leverage">Leverage (x)</label>
+                <input type="number" id="leverage" placeholder="e.g. 10" min="1" max="125" step="1" value="10">
+            </div>
+
+            <div class="input-group">
+                <label for="fut-entry">Entry Price</label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="fut-entry" placeholder="e.g. 60000" min="0" step="0.01">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="fut-exit">Exit Price</label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="fut-exit" placeholder="e.g. 62000" min="0" step="0.01">
+                </div>
+            </div>
+
+            <div class="result-box">
+                <h4>Profit / Loss</h4>
+                <div class="result-value" id="fut-result">
+                    <span class="currency-symbol">$</span><span id="fut-amount">0.00</span>
+                </div>
+                <div style="margin-top: 0.5rem; color: var(--text-muted);">
+                    ROE (Return on Equity): <span id="fut-roi">0.00</span>%
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- INCLUDE FOOTER HERE -->
+    <script src="../js/main.js"></script>
+    <script src="../js/futures.js"></script>
+</body>
+</html>
