@@ -1,37 +1,41 @@
-// --- TAB SWITCHING LOGIC ---
+// --- TAB & MENU LOGIC ---
 function switchTab(tabName) {
+    // Capsule buttons
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
+    
+    // Tab content
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.getElementById('tab-' + tabName).classList.add('active');
+
+    // Update Global Title
+    const titles = { 'spot': 'Spot Calculator', 'futures': 'Futures Calculator', 'fees': 'Fee Calculator' };
+    document.getElementById('calc-title').textContent = titles[tabName];
+}
+
+// Global helper to close menu from HTML onclick
+function closeMenu() {
+    document.getElementById('side-drawer').classList.remove('active');
+    document.getElementById('menu-overlay').classList.remove('active');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- MOBILE MENU TOGGLE ---
+    // --- SIDE DRAWER LOGIC ---
     const menuBtn = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('menu-close');
+    const sideDrawer = document.getElementById('side-drawer');
+    const overlay = document.getElementById('menu-overlay');
     
-    if (menuBtn && mobileMenu) {
+    if (menuBtn && sideDrawer && overlay) {
         menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            menuBtn.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+            sideDrawer.classList.add('active');
+            overlay.classList.add('active');
         });
+        
+        closeBtn.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
     }
-
-    // --- COOKIE CONSENT LOGIC ---
-    const cookieBanner = document.getElementById('cookie-banner');
-    if (cookieBanner && !localStorage.getItem('cookieConsent')) {
-        cookieBanner.classList.remove('hidden');
-    }
-    document.getElementById('accept-cookies')?.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'accepted');
-        cookieBanner.classList.add('hidden');
-    });
-    document.getElementById('reject-cookies')?.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'rejected');
-        cookieBanner.classList.add('hidden');
-    });
 
     // --- CURRENCY LOGIC ---
     const currencySelect = document.getElementById('currency-selector');
@@ -93,17 +97,17 @@ document.addEventListener('DOMContentLoaded', () => {
             fMain.classList.remove('loss'); return; 
         }
 
-        const size = mar * lev; // Total position size
-        const qty = size / ent; // Number of coins
-        const feeCost = size * (feePct / 100) * 2; // Approx fee for opening AND closing full size
+        const size = mar * lev; 
+        const qty = size / ent; 
+        const feeCost = size * (feePct / 100) * 2; 
         
         let pnl = 0, liq = 0;
         if (isLong) {
             pnl = (qty * (ext - ent)) - feeCost;
-            liq = ent - (ent / lev); // Basic long liquidation formula
+            liq = ent - (ent / lev); 
         } else {
             pnl = (qty * (ent - ext)) - feeCost;
-            liq = ent + (ent / lev); // Basic short liquidation formula
+            liq = ent + (ent / lev); 
         }
         
         const roi = (pnl / mar) * 100;
