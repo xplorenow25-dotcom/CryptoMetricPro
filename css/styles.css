@@ -151,3 +151,6 @@ a:hover { color: var(--accent); }
     font-size: 0.85rem; 
     line-height: 1.5; 
 }
+/* ======== CONTACT FORM TEXTAREA ======== */
+.modern-textarea { width: 100%; background: transparent; border: none; color: #fff; font-size: 1rem; outline: none; resize: vertical; min-height: 120px; font-family: var(--font-base); }
+.modern-textarea::placeholder { color: #9CA3AF; }
