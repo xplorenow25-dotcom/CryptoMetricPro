@@ -12,37 +12,38 @@
     <!-- MODERN APP NAVBAR -->
     <nav class="navbar modern-nav">
         <div class="container nav-container">
-            <!-- Left: Currency Dropdown -->
-            <select id="currency-selector" class="currency-select-modern">
-                <option value="USD">USD ($)</option>
-                <option value="EUR">EUR (€)</option>
-                <option value="GBP">GBP (£)</option>
-            </select>
+            <!-- Left: Logo Box -->
+            <a href="index.html" class="logo-box">CMP</a>
             
-            <!-- Center: Logo -->
-            <a href="index.html" class="logo-wrapper">
-                <div class="logo-box">CMP</div>
-            </a>
+            <!-- Center: Text Logo -->
+            <a href="index.html" class="nav-title">CryptoMetric<span>Pro</span></a>
 
             <!-- Right: Mobile Menu Button -->
             <button class="mobile-menu-btn" id="menu-toggle">☰</button>
         </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <ul class="mobile-nav-links" id="mobile-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blog/index.html">Blog</a></li>
-            <li><a href="learn/index.html">Learn Hub</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
     </nav>
+
+    <!-- MODERN SIDE DRAWER MENU -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <div class="side-drawer" id="side-drawer">
+        <div class="drawer-header">
+            <div class="logo-box">CMP</div>
+            <a href="index.html" class="nav-title">CryptoCalc<span>Pro</span></a>
+            <button class="close-btn" id="menu-close">✕</button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="#" class="active-link" onclick="switchTab('spot'); closeMenu();">Spot Calculator</a></li>
+            <li><a href="#" onclick="switchTab('futures'); closeMenu();">Futures Calculator</a></li>
+            <li><a href="#" onclick="switchTab('fees'); closeMenu();">Fee Calculator</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+        </ul>
+    </div>
 
     <main class="container">
         <!-- HERO SECTION -->
         <section class="hero text-center">
-            <h1 class="hero-title">CryptoMetricPro</h1>
-            <p class="hero-subtitle">Advanced metrics and position planning. Maximize your profits and understand your risks.</p>
+            <h1 class="hero-title">Crypto Profit Calculator</h1>
+            <p class="hero-subtitle">Calculate your potential profits, fees, and liquidations instantly.</p>
         </section>
 
         <!-- CAPSULE NAVIGATION -->
@@ -53,11 +54,25 @@
             <button class="tab-btn" onclick="window.location.href='blog/index.html'">Blog</button>
         </div>
 
+        <!-- GLOBAL CALCULATOR HEADER -->
+        <div class="calc-global-header">
+            <h2 id="calc-title" class="page-section-title">Spot Calculator</h2>
+            
+            <!-- CURRENCY DROPDOWN MOVED HERE -->
+            <div class="currency-dropdown-wrapper">
+                <select id="currency-selector" class="currency-select-inline">
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                </select>
+            </div>
+            <hr class="section-divider">
+        </div>
+
         <div class="app-layout">
             
             <!-- SPOT CALCULATOR TAB -->
             <div id="tab-spot" class="calc-card-modern tab-content active">
-                <h2 class="tab-title">Spot Calculator</h2>
                 <div class="input-block">
                     <label>Investment Amount <span class="tooltip" data-tooltip="Total money you are investing">?</span></label>
                     <div class="input-wrapper">
@@ -99,7 +114,6 @@
 
             <!-- FUTURES CALCULATOR TAB -->
             <div id="tab-futures" class="calc-card-modern tab-content">
-                <h2 class="tab-title">Futures Calculator</h2>
                 <div class="toggle-switch">
                     <input type="radio" id="pos-long" name="fut-position" value="long" checked>
                     <label for="pos-long">Long (Buy)</label>
@@ -155,7 +169,6 @@
 
             <!-- FEES CALCULATOR TAB -->
             <div id="tab-fees" class="calc-card-modern tab-content">
-                <h2 class="tab-title">Fee Calculator</h2>
                 <div class="input-block">
                     <label>Trade Amount <span class="tooltip" data-tooltip="Total volume of your trade">?</span></label>
                     <div class="input-wrapper">
@@ -184,17 +197,42 @@
 
         <!-- AFFILIATE SECTION -->
         <section class="affiliate-section" style="margin-top: 4rem; padding-bottom: 3rem;">
-            <h2 class="text-center" style="margin-bottom: 0.5rem; font-size: 1.5rem;">Recommended Platforms</h2>
-            <p class="text-center" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;">Claim exclusive sign-up bonuses below.</p>
+            <h2 class="text-center" style="margin-bottom: 0.5rem; font-size: 1.5rem;">Recommended Trading Platforms</h2>
+            <p class="text-center" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;">Open an account using our links below to claim exclusive sign-up bonuses.</p>
 
             <div class="affiliate-card">
-                <h3><img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" width="24" alt="Binance"> Binance</h3>
+                <h3><img src="https://assets.coingecko.com/markets/images/52/small/binance.jpg" width="24" style="border-radius: 50%;"> Binance</h3>
                 <div class="bonus-text">Up to $100 Bonus + 10% Fee Discount</div>
                 <a href="#" class="btn-outline-green">Claim Bonus</a>
             </div>
+            
             <div class="affiliate-card">
-                <h3><img src="https://cryptologos.cc/logos/tether-usdt-logo.png" width="24" alt="Bybit"> Bybit</h3>
+                <h3><img src="https://assets.coingecko.com/markets/images/698/small/bybit.png" width="24" style="border-radius: 50%;"> Bybit</h3>
                 <div class="bonus-text">Up to $5,000 Deposit Reward</div>
+                <a href="#" class="btn-outline-green">Claim Bonus</a>
+            </div>
+            
+            <div class="affiliate-card">
+                <h3><img src="https://assets.coingecko.com/markets/images/29/small/kraken.jpg" width="24" style="border-radius: 50%;"> Kraken</h3>
+                <div class="bonus-text">Best for Security & Never Hacked</div>
+                <a href="#" class="btn-outline-green">Claim Bonus</a>
+            </div>
+
+            <div class="affiliate-card">
+                <h3><img src="https://assets.coingecko.com/markets/images/23/small/Coinbase_Coin_Primary.png" width="24" style="border-radius: 50%;"> Coinbase</h3>
+                <div class="bonus-text">Beginner Friendly & Secure</div>
+                <a href="#" class="btn-outline-green">Claim Bonus</a>
+            </div>
+
+            <div class="affiliate-card">
+                <h3><img src="https://assets.coingecko.com/markets/images/812/small/BingX.png" width="24" style="border-radius: 50%;"> BingX</h3>
+                <div class="bonus-text">Top Copy Trading Platform</div>
+                <a href="#" class="btn-outline-green">Claim Bonus</a>
+            </div>
+
+            <div class="affiliate-card">
+                <h3><img src="https://assets.coingecko.com/markets/images/609/small/mexc_logo.jpeg" width="24" style="border-radius: 50%;"> MEXC</h3>
+                <div class="bonus-text">Lowest Fees & Highest Leverage</div>
                 <a href="#" class="btn-outline-green">Claim Bonus</a>
             </div>
         </section>
@@ -203,25 +241,16 @@
     <!-- FOOTER -->
     <footer class="site-footer">
         <div class="container text-center">
-            <h3 style="color: #fff; margin-bottom: 1rem;">CryptoMetricPro</h3>
+            <h3 style="color: #fff; margin-bottom: 1rem;">CryptoCalcPro</h3>
             <div class="footer-links">
                 <a href="about.html">About</a>
                 <a href="privacy.html">Privacy</a>
                 <a href="terms.html">Terms</a>
                 <a href="disclaimer.html">Disclaimer</a>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 CryptoMetricPro. Not financial advice.</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 CryptoCalcPro. Not financial advice.</p>
         </div>
     </footer>
-
-    <!-- COOKIE CONSENT BANNER -->
-    <div id="cookie-banner" class="cookie-banner hidden">
-        <p>We use cookies to ensure you get the best experience on our website. Preferences are saved locally.</p>
-        <div class="cookie-btns">
-            <button id="accept-cookies" class="btn-green">Accept</button>
-            <button id="reject-cookies" class="btn-outline">Reject</button>
-        </div>
-    </div>
 
     <script src="js/main.js"></script>
 </body>
