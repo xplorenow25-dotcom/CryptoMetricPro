@@ -1,33 +1,20 @@
-// --- TAB SWITCHING ---
+// Tab Switching Logic
 function switchTab(tabName) {
+    // Update Capsule Buttons
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
 
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-        tab.classList.remove('fade-in'); 
-    });
-    
-    const activeTab = document.getElementById('tab-' + tabName);
-    activeTab.classList.add('active');
-    
-    // Retrigger animation
-    setTimeout(() => activeTab.classList.add('fade-in'), 10);
+    // Update Tab Content
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.getElementById('tab-' + tabName).classList.add('active');
 
+    // Update Title
     const titles = { 'spot': 'Spot Calculator', 'futures': 'Futures Calculator', 'fees': 'Fee Calculator' };
     document.getElementById('calc-title').textContent = titles[tabName];
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- MOBILE MENU TOGGLE ---
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const drawer = document.getElementById('mobile-drawer');
-    menuBtn.addEventListener('click', () => {
-        drawer.classList.toggle('open');
-        menuBtn.textContent = drawer.classList.contains('open') ? '✕' : '☰';
-    });
-
     // --- CURRENCY LOGIC ---
     const currencySelect = document.getElementById('currency-selector');
     const symbols = { 'USD': '$', 'EUR': '€', 'GBP': '£' };
@@ -46,102 +33,61 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.currency-label').forEach(el => el.textContent = currency);
     }
 
-    // Helper: format numbers
-    const fmt = (num) => isNaN(num) || !isFinite(num) ? "0.00" : Math.abs(num).toFixed(2);
-
-    // --- SPOT CALCULATOR ---
-    const sInv = document.getElementById('spot-inv'), sBuy = document.getElementById('spot-buy');
-    const sSell = document.getElementById('spot-sell'), sFee = document.getElementById('spot-fee');
-    const sProf = document.getElementById('spot-profit'), sRoi = document.getElementById('spot-roi');
-    const sFeesPaid = document.getElementById('spot-fees-paid'), sMain = sProf.parentElement;
+    // --- SPOT CALCULATOR LOGIC ---
+    const sInv = document.getElementById('spot-inv');
+    const sBuy = document.getElementById('spot-buy');
+    const sSell = document.getElementById('spot-sell');
+    const sFee = document.getElementById('spot-fee');
+    const sProf = document.getElementById('spot-profit');
+    const sRoi = document.getElementById('spot-roi');
+    const sMain = sProf.parentElement;
 
     function calcSpot() {
         const inv = parseFloat(sInv.value), buy = parseFloat(sBuy.value), sell = parseFloat(sSell.value), feePct = parseFloat(sFee.value) || 0;
-        if (!inv || !buy || !sell) { 
-            sProf.textContent = "0.00"; sRoi.textContent = "0.00"; sFeesPaid.textContent = "0.00"; sMain.classList.remove('loss'); return; 
-        }
+        if (!inv || !buy || !sell) { sProf.textContent = "0.00"; sRoi.textContent = "0.00"; sMain.classList.remove('loss'); return; }
 
         const coins = inv / buy;
         const buyFee = inv * (feePct / 100);
         const grossValue = coins * sell;
         const sellFee = grossValue * (feePct / 100);
         
-        const totalFees = buyFee + sellFee;
-        const netProfit = grossValue - inv - totalFees;
+        const netProfit = grossValue - inv - buyFee - sellFee;
         const roi = (netProfit / inv) * 100;
 
-        sProf.textContent = fmt(netProfit);
-        sRoi.textContent = fmt(roi);
-        sFeesPaid.textContent = fmt(totalFees);
-
+        sProf.textContent = Math.abs(netProfit).toFixed(2);
+        sRoi.textContent = roi.toFixed(2);
         if(netProfit < 0) { sMain.classList.add('loss'); sProf.textContent = "-" + sProf.textContent; } 
         else { sMain.classList.remove('loss'); sProf.textContent = "+" + sProf.textContent; }
     }
     [sInv, sBuy, sSell, sFee].forEach(inp => inp.addEventListener('input', calcSpot));
 
-    // --- FUTURES CALCULATOR ---
+    // --- FUTURES LOGIC ---
     const fMar = document.getElementById('fut-margin'), fLev = document.getElementById('fut-lev');
     const fEnt = document.getElementById('fut-entry'), fExt = document.getElementById('fut-exit');
-    const fFee = document.getElementById('fut-fee');
-    const fProf = document.getElementById('fut-profit'), fRoi = document.getElementById('fut-roi');
-    const fLiq = document.getElementById('fut-liq'), fSize = document.getElementById('fut-size'), fMain = fProf.parentElement;
-    const fRadios = document.getElementsByName('position');
+    const fProf = document.getElementById('fut-profit'), fRoi = document.getElementById('fut-roi'), fMain = fProf.parentElement;
 
     function calcFut() {
-        const isLong = document.getElementById('pos-long').checked;
-        const mar = parseFloat(fMar.value), lev = parseFloat(fLev.value);
-        const ent = parseFloat(fEnt.value), ext = parseFloat(fExt.value), feePct = parseFloat(fFee.value) || 0;
-        
-        if(!mar || !lev || !ent || !ext) { 
-            fProf.textContent = "0.00"; fRoi.textContent = "0.00"; fLiq.textContent = "0.00"; fSize.textContent = "0.00"; fMain.classList.remove('loss'); return; 
-        }
+        const mar = parseFloat(fMar.value), lev = parseFloat(fLev.value), ent = parseFloat(fEnt.value), ext = parseFloat(fExt.value);
+        if(!mar || !lev || !ent || !ext) { fProf.textContent = "0.00"; fRoi.textContent = "0.00"; fMain.classList.remove('loss'); return; }
 
-        const size = mar * lev; // Position Size in USD
-        const qty = size / ent; // Number of contracts
-        
-        // Futures fees are calculated on the full position size
-        const openFee = size * (feePct / 100);
-        const closeValue = qty * ext;
-        const closeFee = closeValue * (feePct / 100);
-        const totalFees = openFee + closeFee;
-
-        let pnl = 0;
-        let liq = 0;
-
-        if (isLong) {
-            pnl = (ext - ent) * qty - totalFees;
-            liq = ent * (1 - (1 / lev)); // Approximate standard liquidation
-        } else {
-            pnl = (ent - ext) * qty - totalFees;
-            liq = ent * (1 + (1 / lev));
-        }
-
+        const size = mar * lev;
+        const qty = size / ent;
+        const pnl = qty * (ext - ent); // Assuming Long position for simplicity here
         const roi = (pnl / mar) * 100;
 
-        fProf.textContent = fmt(pnl);
-        fRoi.textContent = fmt(roi);
-        fLiq.textContent = fmt(liq);
-        fSize.textContent = fmt(size);
-
+        fProf.textContent = Math.abs(pnl).toFixed(2);
+        fRoi.textContent = roi.toFixed(2);
         if(pnl < 0) { fMain.classList.add('loss'); fProf.textContent = "-" + fProf.textContent; }
         else { fMain.classList.remove('loss'); fProf.textContent = "+" + fProf.textContent; }
-    }
-    [fMar, fLev, fEnt, fExt, fFee].forEach(inp => inp.addEventListener('input', calcFut));
-    fRadios.forEach(r => r.addEventListener('change', calcFut));
+    }[fMar, fLev, fEnt, fExt].forEach(inp => inp.addEventListener('input', calcFut));
 
-    // --- FEES CALCULATOR ---
+    // --- FEES LOGIC ---
     const feeSize = document.getElementById('fee-size'), feePctVal = document.getElementById('fee-pct');
-    const feeTot = document.getElementById('fee-total'), feeAfter = document.getElementById('fee-after');
+    const feeTot = document.getElementById('fee-total');
 
     function calcFees() {
         const size = parseFloat(feeSize.value), pct = parseFloat(feePctVal.value);
-        if(!size || !pct) { feeTot.textContent = "0.00"; feeAfter.textContent = "0.00"; return; }
-        
-        const cost = size * (pct / 100);
-        const net = size - cost;
-
-        feeTot.textContent = fmt(cost);
-        feeAfter.textContent = fmt(net);
-    }
-    [feeSize, feePctVal].forEach(inp => inp.addEventListener('input', calcFees));
-}
+        if(!size || !pct) { feeTot.textContent = "0.00"; return; }
+        feeTot.textContent = (size * (pct / 100)).toFixed(2);
+    }[feeSize, feePctVal].forEach(inp => inp.addEventListener('input', calcFees));
+});
