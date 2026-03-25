@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Blog | CryptoMetricPro</title>
+    <title>Trading Blog | CryptoMerticPro</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
-    <!-- NAVBAR (Adjusted paths for subfolder) -->
+    <!-- MODERN APP NAVBAR -->
     <nav class="navbar modern-nav">
         <div class="container nav-container">
             <a href="../index.html" class="logo-box">CMP</a>
-            <a href="../index.html" class="nav-title">CryptoMetric<span>Pro</span></a>
+            <a href="../index.html" class="nav-title">CryptoCalc<span>Pro</span></a>
             <button class="mobile-menu-btn" id="menu-toggle">☰</button>
         </div>
     </nav>
 
-    <!-- DRAWER MENU (Adjusted paths for subfolder) -->
+    <!-- FULL MODERN SIDE DRAWER MENU -->
     <div class="menu-overlay" id="menu-overlay"></div>
     <div class="side-drawer" id="side-drawer">
         <div class="drawer-header">
             <div class="logo-box">CMP</div>
-            <a href="../index.html" class="nav-title">CryptoCalc<span>Pro</span></a>
+            <a href="../index.html" class="nav-title">CryptoMetric<span>Pro</span></a>
             <button class="close-btn" id="menu-close">✕</button>
         </div>
         <ul class="drawer-links">
             <li><a href="../index.html">Calculators Home</a></li>
             <li><a href="index.html" class="active-link">Blog & News</a></li>
+            <li><a href="../learn/index.html">Education Hub</a></li>
+            <li><a href="../contact.html">Contact Support</a></li>
         </ul>
     </div>
 
     <main class="container">
         <!-- BLOG HERO -->
-        <section class="hero text-center" style="padding-bottom: 0;">
+        <section class="hero text-center" style="padding-bottom: 1rem;">
             <h1 class="hero-title">Trader's Journal</h1>
             <p class="hero-subtitle" style="margin-bottom: 2rem;">Insights, market updates, and advanced calculator strategies.</p>
         </section>
 
         <!-- BLOG GRID -->
-        <div class="blog-grid">
+        <div class="blog-grid" style="margin-bottom: 4rem;">
             
             <!-- FEATURED POST -->
             <a href="post.html" class="blog-card featured-post">
@@ -89,11 +91,23 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="site-footer" style="margin-top: 4rem;">
+    <!-- FULL RESTORED FOOTER -->
+    <footer class="site-footer">
         <div class="container text-center">
-            <h3 style="color: #fff; margin-bottom: 1rem;">CryptoCalcPro</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 CryptoCalcPro.</p>
+            <h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.4rem;">CryptoCalcPro</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; max-width: 400px; margin-left: auto; margin-right: auto;">Providing retail traders with fast, secure, and professional position planning tools.</p>
+            
+            <div class="footer-links" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <a href="../about.html" style="font-weight: 500;">About Us</a>
+                <a href="../contact.html" style="font-weight: 500;">Contact</a>
+                <a href="../privacy.html" style="font-weight: 500;">Privacy Policy</a>
+                <a href="../terms.html" style="font-weight: 500;">Terms of Service</a>
+                <a href="../disclaimer.html" style="font-weight: 500;">Disclaimer</a>
+            </div>
+            
+            <div style="border-top: 1px solid var(--card-border); padding-top: 1.5rem; margin-top: 1.5rem;">
+                <p style="color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 CryptoCalcPro. All rights reserved. The calculators provided are for informational and educational purposes only. Nothing on this website constitutes financial or investment advice.</p>
+            </div>
         </div>
     </footer>
 
