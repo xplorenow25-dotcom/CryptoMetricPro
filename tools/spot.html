@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot Profit Calculator | CryptoMetricPro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- INCLUDE NAVBAR HERE (remember to fix link paths to ../) -->
+
+    <main class="container">
+        <div class="calc-wrapper card">
+            <h2>Spot Profit & Loss Calculator</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Calculate pure spot market trades.</p>
+
+            <div class="input-group">
+                <label for="investment">Investment Amount</label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="investment" placeholder="e.g. 1000" min="0" step="0.01">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="entry-price">Entry Price</label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="entry-price" placeholder="e.g. 50000" min="0" step="0.01">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="exit-price">Exit Price</label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="exit-price" placeholder="e.g. 55000" min="0" step="0.01">
+                </div>
+            </div>
+
+            <div class="result-box">
+                <h4>Total Return</h4>
+                <div class="result-value" id="spot-result">
+                    <span class="currency-symbol">$</span><span id="spot-amount">0.00</span>
+                </div>
+                <div style="margin-top: 0.5rem; color: var(--text-muted);">
+                    ROI: <span id="spot-roi">0.00</span>%
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- INCLUDE FOOTER HERE -->
+    <script src="../js/main.js"></script>
+    <script src="../js/spot.js"></script>
+</body>
+</html>
