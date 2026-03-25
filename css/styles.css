@@ -156,4 +156,4 @@ a:hover { color: var(--accent); }
 .modern-textarea::placeholder { color: #9CA3AF; }
 /* ======== CUSTOM LOGO SIZING ======== */
 .brand-logo { display: flex; align-items: center; text-decoration: none; }
-.custom-logo { max-height: 100px; width: auto; object-fit: contain; }
+.custom-logo { max-height: 90px; width: auto; object-fit: contain; }
