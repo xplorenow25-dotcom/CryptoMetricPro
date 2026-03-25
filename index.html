@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoMetricPro | Advanced Calculator Hub</title>
+    <title>CryptoMetricPro | Calculator Hub</title>
     <meta name="description" content="Calculate your crypto profits, futures leverage, and trading fees easily.">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -11,44 +11,28 @@
 
     <!-- MODERN APP NAVBAR -->
     <nav class="navbar modern-nav">
-        <div class="container nav-container">
-            <!-- Invisible div to balance the flexbox for centering -->
-            <div style="width: 30px;"></div> 
-            
+        <div class="container nav-container" style="display: flex; justify-content: space-between; align-items: center;">
             <a href="index.html" class="logo-wrapper">
                 <div class="logo-box">CMP</div>
                 <div class="logo-text">CryptoMetricPro</div>
             </a>
-            
-            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
-        </div>
-
-        <!-- HIDDEN DROPDOWN MENU -->
-        <div class="mobile-drawer" id="mobile-drawer">
-            <ul class="drawer-links">
-                <li><a href="learn/index.html">📚 Crypto Education Center (9 Articles)</a></li>
-                <li><a href="blog/index.html">📰 Trading Blog</a></li>
-                <li><a href="about.html">ℹ️ About Us</a></li>
-                <li><a href="contact.html">✉️ Contact Support</a></li>
-            </ul>
+            <button class="mobile-menu-btn" style="color: white; background: none; border: none; font-size: 1.5rem;">☰</button>
         </div>
     </nav>
 
-    <main class="container fade-in">
+    <main class="container">
         <!-- HERO SECTION -->
-        <section class="hero text-center" style="padding: 2rem 0 1rem;">
-            <h1 style="font-size: 2.2rem; margin-bottom: 0.5rem;">Crypto Profit Calculator</h1>
-            <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 400px; margin: 0 auto;">Calculate your potential profits, fees, and liquidations instantly.</p>
+        <section class="hero text-center" style="padding: 3rem 0 1rem;">
+            <h1 style="font-size: 2.2rem; margin-bottom: 1rem;">Crypto Profit Calculator</h1>
+            <p style="color: var(--text-muted); font-size: 1rem; max-width: 400px; margin: 0 auto;">Calculate your potential profits, fees, and liquidations instantly.</p>
         </section>
 
-        <!-- SCROLLABLE CAPSULE NAVIGATION -->
-        <div class="capsule-nav-wrapper">
-            <div class="capsule-nav">
-                <button class="tab-btn active" onclick="switchTab('spot')">Spot</button>
-                <button class="tab-btn" onclick="switchTab('futures')">Futures</button>
-                <button class="tab-btn" onclick="switchTab('fees')">Fee</button>
-                <button class="tab-btn" onclick="window.location.href='learn/index.html'">Learn</button>
-            </div>
+        <!-- CAPSULE NAVIGATION -->
+        <div class="capsule-nav">
+            <button class="tab-btn active" onclick="switchTab('spot')">Spot</button>
+            <button class="tab-btn" onclick="switchTab('futures')">Futures</button>
+            <button class="tab-btn" onclick="switchTab('fees')">Fee</button>
+            <button class="tab-btn" onclick="window.location.href='blog/index.html'">Blog</button>
         </div>
 
         <div class="app-layout">
@@ -66,30 +50,30 @@
             </div>
 
             <!-- SPOT CALCULATOR TAB -->
-            <div id="tab-spot" class="calc-card-modern tab-content active fade-in">
+            <div id="tab-spot" class="calc-card-modern tab-content active">
                 <div class="input-block">
-                    <label>Investment Amount <span class="tooltip" data-tooltip="Total money you are putting into this trade.">ⓘ</span></label>
+                    <label>Investment Amount</label>
                     <div class="input-wrapper">
                         <input type="number" id="spot-inv" placeholder="1000">
                         <span class="currency-label">USD</span>
                     </div>
                 </div>
                 <div class="input-block">
-                    <label>Buy Price <span class="tooltip" data-tooltip="The price of the coin when you buy it.">ⓘ</span></label>
+                    <label>Buy Price</label>
                     <div class="input-wrapper">
                         <input type="number" id="spot-buy" placeholder="45000">
                         <span class="currency-label">USD</span>
                     </div>
                 </div>
                 <div class="input-block">
-                    <label>Sell Price <span class="tooltip" data-tooltip="The price of the coin when you sell it.">ⓘ</span></label>
+                    <label>Sell Price</label>
                     <div class="input-wrapper">
                         <input type="number" id="spot-sell" placeholder="50000">
                         <span class="currency-label">USD</span>
                     </div>
                 </div>
                 <div class="input-block">
-                    <label>Exchange Fee <span class="tooltip" data-tooltip="Standard exchange fee per trade (e.g. Binance is 0.1%).">ⓘ</span></label>
+                    <label>Exchange Fee</label>
                     <div class="input-wrapper">
                         <input type="number" id="spot-fee" placeholder="0.1" value="0.1">
                         <span style="color: #9CA3AF;">%</span>
@@ -97,91 +81,61 @@
                 </div>
 
                 <div class="result-block-modern">
-                    <p class="result-label">Net Profit / Loss</p>
-                    <h3 class="result-main number-transition"><span class="currency-symbol">$</span><span id="spot-profit">0.00</span></h3>
-                    <p class="result-sub">ROI: <span id="spot-roi" class="number-transition">0.00</span>%</p>
-                    <div class="extra-metrics">
-                        <span>Total Fees Paid:</span>
-                        <span class="metric-val"><span class="currency-symbol">$</span><span id="spot-fees-paid" class="number-transition">0.00</span></span>
-                    </div>
+                    <p class="result-label">Profit / Loss</p>
+                    <h3 class="result-main"><span class="currency-symbol">$</span><span id="spot-profit">0.00</span></h3>
+                    <p class="result-sub"><span id="spot-roi">0.00</span>%</p>
                 </div>
             </div>
 
-            <!-- FUTURES CALCULATOR TAB -->
-            <div id="tab-futures" class="calc-card-modern tab-content fade-in">
-                
-                <!-- LONG / SHORT TOGGLE -->
-                <div class="toggle-group">
-                    <input type="radio" id="pos-long" name="position" value="long" checked>
-                    <label for="pos-long" class="toggle-btn long-btn">🟢 Long</label>
-                    
-                    <input type="radio" id="pos-short" name="position" value="short">
-                    <label for="pos-short" class="toggle-btn short-btn">🔴 Short</label>
-                </div>
-
+            <!-- FUTURES CALCULATOR TAB (Hidden by default) -->
+            <div id="tab-futures" class="calc-card-modern tab-content">
                 <div class="input-block">
-                    <label>Initial Margin <span class="tooltip" data-tooltip="Your own money used to open the position.">ⓘ</span></label>
+                    <label>Initial Margin</label>
                     <div class="input-wrapper">
                         <input type="number" id="fut-margin" placeholder="500">
                         <span class="currency-label">USD</span>
                     </div>
                 </div>
                 <div class="input-block">
-                    <label>Leverage (x) <span class="tooltip" data-tooltip="Multiplier. 10x leverage turns $500 margin into a $5000 position.">ⓘ</span></label>
+                    <label>Leverage (x)</label>
                     <div class="input-wrapper">
                         <input type="number" id="fut-lev" placeholder="10" value="10">
                         <span style="color: #9CA3AF;">x</span>
                     </div>
                 </div>
                 <div class="input-block">
-                    <label>Entry Price <span class="tooltip" data-tooltip="Price at which you open the contract.">ⓘ</span></label>
+                    <label>Entry Price</label>
                     <div class="input-wrapper">
                         <input type="number" id="fut-entry" placeholder="60000">
                         <span class="currency-label">USD</span>
                     </div>
                 </div>
                 <div class="input-block">
-                    <label>Exit Price <span class="tooltip" data-tooltip="Price at which you close the contract.">ⓘ</span></label>
+                    <label>Exit Price</label>
                     <div class="input-wrapper">
                         <input type="number" id="fut-exit" placeholder="62000">
                         <span class="currency-label">USD</span>
                     </div>
                 </div>
-                <div class="input-block">
-                    <label>Taker/Maker Fee <span class="tooltip" data-tooltip="Futures fees are charged on the TOTAL position size, not just margin!">ⓘ</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="fut-fee" placeholder="0.04" value="0.04">
-                        <span style="color: #9CA3AF;">%</span>
-                    </div>
-                </div>
 
                 <div class="result-block-modern">
-                    <p class="result-label">Net PnL (After Fees)</p>
-                    <h3 class="result-main number-transition"><span class="currency-symbol">$</span><span id="fut-profit">0.00</span></h3>
-                    <p class="result-sub">ROE: <span id="fut-roi" class="number-transition">0.00</span>%</p>
-                    
-                    <div class="extra-metrics">
-                        <span>Liquidation Price (Est.):</span>
-                        <span class="metric-val" style="color: #F59E0B;"><span class="currency-symbol">$</span><span id="fut-liq" class="number-transition">0.00</span></span>
-                    </div>
-                    <div class="extra-metrics">
-                        <span>Total Position Size:</span>
-                        <span class="metric-val"><span class="currency-symbol">$</span><span id="fut-size" class="number-transition">0.00</span></span>
-                    </div>
+                    <p class="result-label">PnL (Return on Equity)</p>
+                    <h3 class="result-main"><span class="currency-symbol">$</span><span id="fut-profit">0.00</span></h3>
+                    <p class="result-sub"><span id="fut-roi">0.00</span>%</p>
                 </div>
             </div>
 
-            <!-- FEES CALCULATOR TAB -->
-            <div id="tab-fees" class="calc-card-modern tab-content fade-in">
+            <!-- FEES CALCULATOR TAB (Hidden by default) -->
+            <div id="tab-fees" class="calc-card-modern tab-content">
                 <div class="input-block">
-                    <label>Trade Amount <span class="tooltip" data-tooltip="Total volume of the trade.">ⓘ</span></label>
+                    <label>Total Trade Size</label>
                     <div class="input-wrapper">
                         <input type="number" id="fee-size" placeholder="10000">
                         <span class="currency-label">USD</span>
                     </div>
                 </div>
                 <div class="input-block">
-                    <label>Fee Percentage <span class="tooltip" data-tooltip="Exchange fee rate.">ⓘ</span></label>
+                    <label>Maker/Taker Fee</label>
                     <div class="input-wrapper">
                         <input type="number" id="fee-pct" placeholder="0.1" value="0.1">
                         <span style="color: #9CA3AF;">%</span>
@@ -189,22 +143,17 @@
                 </div>
 
                 <div class="result-block-modern">
-                    <p class="result-label">Fee Cost</p>
-                    <h3 class="result-main loss number-transition">-<span class="currency-symbol">$</span><span id="fee-total">0.00</span></h3>
-                    
-                    <div class="extra-metrics" style="margin-top: 1rem;">
-                        <span>Total After Fee Deducted:</span>
-                        <span class="metric-val"><span class="currency-symbol">$</span><span id="fee-after" class="number-transition">0.00</span></span>
-                    </div>
+                    <p class="result-label">Total Fee Paid</p>
+                    <h3 class="result-main loss">-<span class="currency-symbol">$</span><span id="fee-total">0.00</span></h3>
                 </div>
             </div>
 
         </div>
 
-        <!-- 6 RECOMMENDED EXCHANGES (Affiliate Section) -->
-        <section class="affiliate-section" style="margin-top: 3rem; padding-bottom: 4rem;">
+        <!-- AFFILIATE SECTION (Always visible below calculators) -->
+        <section class="affiliate-section" style="margin-top: 4rem; padding-bottom: 4rem;">
             <h2 class="text-center" style="margin-bottom: 0.5rem;">Recommended Trading Platforms</h2>
-            <p class="text-center" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Open an account using our links below to claim exclusive sign-up bonuses.</p>
+            <p class="text-center" style="color: var(--text-muted); margin-bottom: 2rem;">Open an account using our links below to claim exclusive sign-up bonuses.</p>
 
             <div class="affiliate-card">
                 <h3><img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" width="24" alt="Binance"> Binance</h3>
@@ -224,27 +173,6 @@
                 <h3><img src="https://cryptologos.cc/logos/kraken-k-logo.png" width="24" alt="Kraken"> Kraken</h3>
                 <p>Best for security and Never Hacked</p>
                 <div class="bonus-text">20% Maker Fee Discount</div>
-                <a href="#" class="btn-outline-green">Claim Bonus</a>
-            </div>
-
-            <div class="affiliate-card">
-                <h3><img src="https://cryptologos.cc/logos/coinbase-coin-logo.png" width="24" alt="Coinbase"> Coinbase</h3>
-                <p>Most Trusted US Exchange</p>
-                <div class="bonus-text">Get $10 in Bitcoin on Sign Up</div>
-                <a href="#" class="btn-outline-green">Claim Bonus</a>
-            </div>
-
-            <div class="affiliate-card">
-                <h3><img src="https://s2.coinmarketcap.com/static/img/exchanges/64x64/5294.png" width="24" alt="BingX"> BingX</h3>
-                <p>Excellent for Copy Trading</p>
-                <div class="bonus-text">Up to $5,125 New User Rewards</div>
-                <a href="#" class="btn-outline-green">Claim Bonus</a>
-            </div>
-
-            <div class="affiliate-card">
-                <h3><img src="https://s2.coinmarketcap.com/static/img/exchanges/64x64/544.png" width="24" alt="MEXC"> MEXC</h3>
-                <p>Lowest Spot & Futures Fees Globally</p>
-                <div class="bonus-text">0% Spot Maker & Taker Fees</div>
                 <a href="#" class="btn-outline-green">Claim Bonus</a>
             </div>
         </section>
