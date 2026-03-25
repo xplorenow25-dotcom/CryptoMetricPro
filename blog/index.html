@@ -3,46 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Trading Blog | CryptoMetricPro</title>
+    <title>Trading Blog | CryptoMetricPro</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <!-- INCLUDE NAVBAR HERE -->
+
+    <!-- NAVBAR (Adjusted paths for subfolder) -->
+    <nav class="navbar modern-nav">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo-box">CMP</a>
+            <a href="../index.html" class="nav-title">CryptoMetric<span>Pro</span></a>
+            <button class="mobile-menu-btn" id="menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- DRAWER MENU (Adjusted paths for subfolder) -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <div class="side-drawer" id="side-drawer">
+        <div class="drawer-header">
+            <div class="logo-box">CMP</div>
+            <a href="../index.html" class="nav-title">CryptoCalc<span>Pro</span></a>
+            <button class="close-btn" id="menu-close">✕</button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="../index.html">Calculators Home</a></li>
+            <li><a href="index.html" class="active-link">Blog & News</a></li>
+        </ul>
+    </div>
 
     <main class="container">
-        <section style="margin-top: 4rem; text-align: center;">
-            <h2>CryptoMetricPro Blog</h2>
-            <p style="color: var(--text-muted);">Insights, market updates, and advanced calculator strategies.</p>
+        <!-- BLOG HERO -->
+        <section class="hero text-center" style="padding-bottom: 0;">
+            <h1 class="hero-title">Trader's Journal</h1>
+            <p class="hero-subtitle" style="margin-bottom: 2rem;">Insights, market updates, and advanced calculator strategies.</p>
         </section>
 
-        <section class="grid-3">
-            <!-- Blog Post 1 -->
-            <div class="card">
-                <span style="color: var(--primary); font-size: 0.85rem; font-weight: bold;">STRATEGY</span>
-                <h3 style="margin-top: 0.5rem;">How to Use Leverage Responsibly</h3>
-                <p>Leverage can be a powerful tool or a quick way to liquidate your portfolio. Learn how to calculate margin properly...</p>
-                <a href="post.html" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read Article</a>
-            </div>
+        <!-- BLOG GRID -->
+        <div class="blog-grid">
             
-            <!-- Blog Post 2 -->
-            <div class="card">
-                <span style="color: var(--primary); font-size: 0.85rem; font-weight: bold;">MARKETS</span>
-                <h3 style="margin-top: 0.5rem;">Spot vs Futures: Which is Better?</h3>
-                <p>Understanding the fundamental differences between owning an asset and trading a derivative contract...</p>
-                <a href="post.html" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read Article</a>
-            </div>
+            <!-- FEATURED POST -->
+            <a href="post.html" class="blog-card featured-post">
+                <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Crypto Chart" class="blog-img">
+                <div class="blog-content">
+                    <span class="blog-tag">Strategy</span>
+                    <h2 class="blog-title">How to Use Leverage Responsibly in 2026</h2>
+                    <p class="blog-desc">Leverage can be a powerful tool or a quick way to liquidate your portfolio. Learn how to calculate margin properly to protect your capital.</p>
+                    <div class="blog-meta">
+                        <div>
+                            <img src="https://i.pravatar.cc/100?img=33" alt="Author" class="author-avatar">
+                            <span>Alex Mercer</span>
+                        </div>
+                        <span>Oct 12 • 5 min read</span>
+                    </div>
+                </div>
+            </a>
 
-            <!-- Blog Post 3 -->
-            <div class="card">
-                <span style="color: var(--primary); font-size: 0.85rem; font-weight: bold;">TUTORIAL</span>
-                <h3 style="margin-top: 0.5rem;">Minimizing Exchange Fees</h3>
-                <p>Don't let hidden fees eat into your profits. A deep dive into Maker vs Taker fees and how to avoid them...</p>
-                <a href="post.html" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read Article</a>
-            </div>
-        </section>
+            <!-- SECONDARY POST 1 -->
+            <a href="post.html" class="blog-card">
+                <img src="https://images.unsplash.com/photo-1622630998477-20b41cd0e073?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Bitcoin Coin" class="blog-img">
+                <div class="blog-content">
+                    <span class="blog-tag" style="color: #3B82F6;">Markets</span>
+                    <h2 class="blog-title">Spot vs Futures: Which is Better?</h2>
+                    <p class="blog-desc">Understanding the fundamental differences between owning an asset and trading a derivative contract.</p>
+                    <div class="blog-meta">
+                        <span>Sarah Jenkins</span>
+                        <span>Oct 05 • 4 min read</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- SECONDARY POST 2 -->
+            <a href="post.html" class="blog-card">
+                <img src="https://images.unsplash.com/photo-1639762681485-074b7f4ec651?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Exchange App" class="blog-img">
+                <div class="blog-content">
+                    <span class="blog-tag" style="color: #EAB308;">Tutorial</span>
+                    <h2 class="blog-title">Minimizing Exchange Fees</h2>
+                    <p class="blog-desc">Don't let hidden fees eat into your profits. A deep dive into Maker vs Taker fees and how to avoid them.</p>
+                    <div class="blog-meta">
+                        <span>Alex Mercer</span>
+                        <span>Sep 28 • 6 min read</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
     </main>
 
-    <!-- INCLUDE FOOTER HERE -->
+    <!-- FOOTER -->
+    <footer class="site-footer" style="margin-top: 4rem;">
+        <div class="container text-center">
+            <h3 style="color: #fff; margin-bottom: 1rem;">CryptoCalcPro</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 CryptoCalcPro.</p>
+        </div>
+    </footer>
+
     <script src="../js/main.js"></script>
 </body>
 </html>
