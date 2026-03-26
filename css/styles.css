@@ -335,6 +335,16 @@ a:hover { color: var(--accent); }
   display: flex;
   gap: 8px;
   overflow-x: auto;
+  padding-bottom: 5px; /* Adds a tiny bit of breathing room at the bottom */
+  
+  /* Hides the scrollbar but keeps it swipeable! */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+/* Hides the scrollbar for Chrome, Safari, and Mobile Browsers */
+.price-row::-webkit-scrollbar {
+  display: none;
 }
 
 .price-card {
