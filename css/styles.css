@@ -203,3 +203,53 @@ a:hover { color: var(--accent); }
     width: auto; 
     object-fit: contain; 
 }
+/* ======== NEW MINIMALIST BLOG DESIGN ======== */
+.blog-list-minimal { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+    margin-bottom: 4rem; 
+}
+.blog-card-minimal { 
+    background: var(--card-bg); 
+    border: 1px solid var(--card-border); 
+    border-radius: 1.2rem; 
+    padding: 1.8rem; 
+    text-decoration: none; 
+    display: block; 
+    transition: transform 0.2s ease, border-color 0.2s ease; 
+}
+.blog-card-minimal:hover { 
+    transform: translateY(-3px); 
+    border-color: var(--accent); 
+}
+.blog-date { 
+    color: var(--accent); 
+    font-size: 0.8rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    margin-bottom: 0.8rem; 
+}
+.blog-title-minimal { 
+    color: #fff; 
+    font-size: 1.4rem; 
+    font-weight: 700; 
+    margin-bottom: 0.8rem; 
+    line-height: 1.3; 
+}
+.blog-excerpt { 
+    color: var(--text-muted); 
+    font-size: 1rem; 
+    line-height: 1.6; 
+    margin-bottom: 1.5rem; 
+}
+.read-more { 
+    color: #fff; 
+    font-weight: 600; 
+    font-size: 0.95rem; 
+    transition: color 0.2s; 
+}
+.blog-card-minimal:hover .read-more { 
+    color: var(--accent); 
+}
