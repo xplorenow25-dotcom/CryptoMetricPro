@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Blog | CryptoMetricPro</title>
+    <title>Crypto Blog & News | CryptoMetricPro</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -36,35 +36,45 @@
     </div>
 
     <main class="container">
-        <!-- BLOG HERO -->
-        <section class="hero text-center" style="padding-bottom: 1rem;">
-            <h1 class="hero-title">Trader's Journal</h1>
-            <p class="hero-subtitle" style="margin-bottom: 2rem;">Insights, market updates, and advanced calculator strategies.</p>
-        </section>
+        
+        <!-- CAPSULE NAVIGATION (Added to Blog page for seamless app feel) -->
+        <div class="capsule-nav" style="margin-top: 2rem;">
+            <button class="tab-btn" onclick="window.location.href='../index.html'">Spot</button>
+            <button class="tab-btn" onclick="window.location.href='../index.html'">Futures</button>
+            <button class="tab-btn" onclick="window.location.href='../index.html'">Fee</button>
+            <button class="tab-btn active">Blog</button>
+        </div>
 
-        <!-- BLOG GRID -->
-        <div class="blog-grid" style="margin-bottom: 4rem;">
-            <a href="post.html" class="blog-card featured-post">
-                <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Crypto Chart" class="blog-img">
-                <div class="blog-content">
-                    <span class="blog-tag">Strategy</span>
-                    <h2 class="blog-title">How to Use Leverage Responsibly in 2026</h2>
-                    <p class="blog-desc">Leverage can be a powerful tool or a quick way to liquidate your portfolio. Learn how to calculate margin properly to protect your capital.</p>
-                    <div class="blog-meta">
-                        <div><img src="https://i.pravatar.cc/100?img=33" alt="Author" class="author-avatar"><span>Alex Mercer</span></div>
-                        <span>Oct 12 • 5 min read</span>
-                    </div>
-                </div>
+        <!-- NEW LEFT-ALIGNED TITLE -->
+        <h1 style="font-size: 2.2rem; font-weight: 800; color: #fff; margin: 2rem 0 1.5rem; letter-spacing: -0.5px;">Crypto Blog & News</h1>
+
+        <!-- NEW MINIMALIST BLOG LIST -->
+        <div class="blog-list-minimal">
+            
+            <!-- ARTICLE 1 -->
+            <a href="post.html" class="blog-card-minimal">
+                <div class="blog-date">MARCH 23, 2026</div>
+                <h2 class="blog-title-minimal">Bitcoin Halving: What to Expect</h2>
+                <p class="blog-excerpt">An in-depth analysis of market trends following previous halving cycles and how it impacts your portfolio.</p>
+                <div class="read-more">Read Article &rarr;</div>
             </a>
-            <a href="post.html" class="blog-card">
-                <img src="https://images.unsplash.com/photo-1622630998477-20b41cd0e073?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Bitcoin Coin" class="blog-img">
-                <div class="blog-content">
-                    <span class="blog-tag" style="color: #3B82F6;">Markets</span>
-                    <h2 class="blog-title">Spot vs Futures: Which is Better?</h2>
-                    <p class="blog-desc">Understanding the fundamental differences between owning an asset and trading a derivative contract.</p>
-                    <div class="blog-meta"><span>Sarah Jenkins</span><span>Oct 05 • 4 min read</span></div>
-                </div>
+
+            <!-- ARTICLE 2 -->
+            <a href="post.html" class="blog-card-minimal">
+                <div class="blog-date">MARCH 18, 2026</div>
+                <h2 class="blog-title-minimal">Top 5 Altcoins to Watch this Month</h2>
+                <p class="blog-excerpt">We review the most promising layer-1 and layer-2 solutions making waves in the current crypto market.</p>
+                <div class="read-more">Read Article &rarr;</div>
             </a>
+
+            <!-- ARTICLE 3 -->
+            <a href="post.html" class="blog-card-minimal">
+                <div class="blog-date">MARCH 10, 2026</div>
+                <h2 class="blog-title-minimal">How to Calculate Futures Margin</h2>
+                <p class="blog-excerpt">Stop guessing your liquidation price. Here is the mathematical formula used by professional institutional traders.</p>
+                <div class="read-more">Read Article &rarr;</div>
+            </a>
+
         </div>
     </main>
 
