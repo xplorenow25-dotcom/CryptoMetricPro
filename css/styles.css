@@ -321,27 +321,60 @@ a:hover { color: var(--accent); }
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* ======== AUTO-SCROLLING LIVE PRICES ======== */
-/* 🔥 Live Crypto Ticker */
-
-.ticker-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* ======== LIVE AUTO-SCROLLING TICKER DESIGN ======== */
+.ticker-wrapper {
+    width: 100%;
+    overflow: hidden; /* Hides everything outside the row */
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+    position: relative;
+    /* This creates the premium faded fade-out effect on the left and right edges! */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-/* Bigger coin name */
-.coin {
-  color: #e2e8f0;
-  font-size: 15px;
-  font-weight: 600;
+.ticker-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    /* 15s is the speed. Lower = faster, Higher = slower */
+    animation: scrollTicker 15s linear infinite; 
 }
 
-/* Bigger price */
-.price {
-  font-size: 15px;
-  font-weight: 600;
-  color: #22c55e; /* or keep white if you want neutral */
+/* Pauses the scrolling when a user touches it to read a price */
+.ticker-track:hover {
+    animation-play-state: paused;
+}
+
+.ticker-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 0.8rem 1.8rem;
+    border-radius: 0.8rem;
+    text-align: center;
+    min-width: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.ticker-coin {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.ticker-price {
+    color: var(--text-muted); /* Changes to green if you prefer var(--accent) */
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* The infinite sliding animation */
+@keyframes scrollTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
 }
 /* ======== FAR-LEFT LOGO & GREEN PRO TEXT ======== */
 .brand-logo {
