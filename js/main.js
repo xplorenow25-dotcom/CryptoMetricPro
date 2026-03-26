@@ -157,7 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('fee-after').textContent = format(amountAfter);
     }['fee-size', 'fee-pct'].forEach(id => document.getElementById(id)?.addEventListener('input', calcFees));
 });
-// 🔥 Stable Live Prices (NO DISAPPEAR BUG)
+// 🔥 Crypto Ticker with Color Change
+
 const coins = [
   { id: "bitcoin", symbol: "BTC" },
   { id: "ethereum", symbol: "ETH" },
@@ -166,48 +167,47 @@ const coins = [
   { id: "solana", symbol: "SOL" }
 ];
 
-async function loadPrices() {
+async function loadTicker() {
   const container = document.getElementById("cryptoPrices");
   if (!container) return;
 
   try {
     const ids = coins.map(c => c.id).join(",");
-    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`;
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
 
     const res = await fetch(url);
     if (!res.ok) throw new Error("API error");
 
     const data = await res.json();
 
-    let html = "";
+    let items = "";
 
     coins.forEach(c => {
       const price = data[c.id]?.usd;
+      const change = data[c.id]?.usd_24h_change;
 
-      if (price) {
-        html += `
-          <div class="price-card">
+      if (price && change !== undefined) {
+        const isUp = change >= 0;
+
+        items += `
+          <div class="ticker-item">
             <strong>${c.symbol}</strong>
-            <div class="price">$${price.toLocaleString()}</div>
+            <span class="${isUp ? "green" : "red"}">
+              ${isUp ? "▲" : "▼"} $${price.toLocaleString()}
+            </span>
+            <span>•</span>
           </div>
         `;
       }
     });
 
-    // ✅ Only update UI if data exists
-    if (html) {
-      container.innerHTML = html;
-    }
+    container.innerHTML = items + items;
 
   } catch (err) {
-    console.error("Price fetch failed:", err);
-
-    // ❗ DO NOTHING → keep old data visible
+    console.error("Ticker error:", err);
   }
 }
 
-// First load
-loadPrices();
-
-// ✅ Increase interval (important!)
-setInterval(loadPrices, 60000); // 60 sec
+// Run
+loadTicker();
+setInterval(loadTicker, 60000);
