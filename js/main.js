@@ -157,18 +157,57 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('fee-after').textContent = format(amountAfter);
     }['fee-size', 'fee-pct'].forEach(id => document.getElementById(id)?.addEventListener('input', calcFees));
 });
-// DO NOT clear the HTML first!
-async function getLivePrices() {
-    // 1. Fetch the data quietly in the background first
-    const response = await fetch('YOUR_COINGECKO_API_URL');
-    const data = await response.json();
+// 🔥 Stable Live Prices (NO DISAPPEAR BUG)
+const coins = [
+  { id: "bitcoin", symbol: "BTC" },
+  { id: "ethereum", symbol: "ETH" },
+  { id: "ripple", symbol: "XRP" },
+  { id: "binancecoin", symbol: "BNB" },
+  { id: "solana", symbol: "SOL" }
+];
 
-    // 2. Build your new HTML cards
-    let newCardsHTML = `<div class="price-card">...</div>`;
+async function loadPrices() {
+  const container = document.getElementById("cryptoPrices");
+  if (!container) return;
 
-    // 3. Swap the HTML instantly! (No blinking!)
-    document.querySelector('.price-row').innerHTML = newCardsHTML;
+  try {
+    const ids = coins.map(c => c.id).join(",");
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`;
+
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("API error");
+
+    const data = await res.json();
+
+    let html = "";
+
+    coins.forEach(c => {
+      const price = data[c.id]?.usd;
+
+      if (price) {
+        html += `
+          <div class="price-card">
+            <strong>${c.symbol}</strong>
+            <div class="price">$${price.toLocaleString()}</div>
+          </div>
+        `;
+      }
+    });
+
+    // ✅ Only update UI if data exists
+    if (html) {
+      container.innerHTML = html;
+    }
+
+  } catch (err) {
+    console.error("Price fetch failed:", err);
+
+    // ❗ DO NOTHING → keep old data visible
+  }
 }
 
-// Update every 10 seconds
-setInterval(getLivePrices, 10000);
+// First load
+loadPrices();
+
+// ✅ Increase interval (important!)
+setInterval(loadPrices, 60000); // 60 sec
