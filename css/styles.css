@@ -159,7 +159,7 @@ a:hover { color: var(--accent); }
     display: flex; 
     align-items: center; 
     text-decoration: none; 
-    margin-left: -25px; /* <-- This physically pulls it to the left! */
+    margin-left: -15px; /* <-- This physically pulls it to the left! */
 }
 .custom-logo { 
     max-height: 80px; 
