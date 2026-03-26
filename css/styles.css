@@ -349,11 +349,30 @@ a:hover { color: var(--accent); }
 .price {
   font-size: 13px;
 }
-/* ======== BRAND NAME TEXT BESIDE LOGO ======== */
+/* ======== FAR-LEFT LOGO & TEXT STYLING ======== */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    /* This ensures it stays locked to the left side */
+    position: relative; 
+    left: 0;
+    transform: none;
+    margin-left: 0;
+}
+.custom-logo {
+    max-height: 40px; 
+    width: auto;
+    object-fit: contain;
+}
 .brand-name {
     color: #fff;
-    font-size: 1.3rem; /* Adjust this to match your logo size */
-    font-weight: 800; /* Makes it thick and bold like CoinGecko */
-    margin-left: 0.6rem; /* Creates the perfect gap between the image and the text */
-    letter-spacing: -0.5px; /* Gives it a modern, tight SaaS look */
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-left: 0.5rem; /* Gap between image and text */
+    letter-spacing: -0.5px;
+}
+.pro-text {
+    /* This uses the exact same bright green variable from your Profit calculators! */
+    color: var(--accent); 
 }
