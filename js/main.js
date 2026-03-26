@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('fee-after').textContent = format(amountAfter);
     }['fee-size', 'fee-pct'].forEach(id => document.getElementById(id)?.addEventListener('input', calcFees));
 });
-// 🔥 Live Crypto Prices
+// 🔥 Stable Live Prices (NO DISAPPEAR BUG)
 const coins = [
   { id: "bitcoin", symbol: "BTC" },
   { id: "ethereum", symbol: "ETH" },
@@ -167,39 +167,42 @@ const coins = [
 ];
 
 async function loadPrices() {
+  const container = document.getElementById("cryptoPrices");
+  if (!container) return;
+
   try {
     const ids = coins.map(c => c.id).join(",");
-    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`;
 
     const res = await fetch(url);
+    if (!res.ok) throw new Error("API error");
+
     const data = await res.json();
 
-    const container = document.getElementById("cryptoPrices");
-    if (!container) return; // prevents errors on other pages
-
-    container.innerHTML = "";
+    let html = "";
 
     coins.forEach(c => {
-      const price = data[c.id].usd;
-      const change = data[c.id].usd_24h_change;
-      const up = change >= 0;
+      const price = data[c.id]?.usd;
 
-      container.innerHTML += `
-        <div class="price-card">
-          <strong>${c.symbol}</strong>
-          <div class="price">$${price.toLocaleString()}</div>
-          <div class="change ${up ? "green" : "red"}">
-            ${up ? "▲" : "▼"} ${change.toFixed(2)}%
+      if (price) {
+        html += `
+          <div class="price-card">
+            <strong>${c.symbol}</strong>
+            <div class="price">$${price.toLocaleString()}</div>
           </div>
-        </div>
-      `;
+        `;
+      }
     });
 
+    if (html) {
+      container.innerHTML = html;
+    }
+
   } catch (err) {
-    console.error("Price fetch error:", err);
+    console.error("Price fetch failed:", err);
   }
 }
 
-// Run only if section exists
+// Run
 loadPrices();
-setInterval(loadPrices, 20000);
+setInterval(loadPrices, 60000);
