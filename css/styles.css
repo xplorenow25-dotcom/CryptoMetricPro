@@ -322,20 +322,21 @@ a:hover { color: var(--accent); }
 }
 
 /* ======== AUTO-SCROLLING LIVE PRICES ======== */
+.live-prices {
+  margin: 20px 0 10px;
+  padding: 0 15px;
+}
+
+.live-prices h2 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #94a3b8;
+}
+
 .price-row {
   display: flex;
   gap: 8px;
-  overflow: hidden; /* Hides the ugly scrollbar */
-  white-space: nowrap;
-  
-  /* This is the magic line that makes it move automatically */
-  animation: tickerScroll 20s linear infinite; 
-}
-
-/* This controls the movement from Right to Left */
-@keyframes tickerScroll {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-150%); }
+  overflow-x: auto;
 }
 
 .price-card {
