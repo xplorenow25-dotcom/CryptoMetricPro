@@ -37,6 +37,27 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.addEventListener('click', closeMenu);
     }
 
+    // --- PREMIUM COOKIE CONSENT LOGIC ---
+    const cookieBanner = document.getElementById('cookie-banner');
+    if (cookieBanner && !localStorage.getItem('cookieConsent')) {
+        // Waits 1.5 seconds after page loads, then smoothly slides up!
+        setTimeout(() => {
+            cookieBanner.classList.add('show');
+        }, 1500); 
+    }
+
+    document.getElementById('accept-cookies')?.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        cookieBanner.classList.remove('show'); // Slides down
+        setTimeout(() => cookieBanner.style.display = 'none', 600); // Removes from code after slide
+    });
+
+    document.getElementById('reject-cookies')?.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'rejected');
+        cookieBanner.classList.remove('show'); // Slides down
+        setTimeout(() => cookieBanner.style.display = 'none', 600);
+    });
+
     // --- CURRENCY LOGIC ---
     const currencySelect = document.getElementById('currency-selector');
     const symbols = { 'USD': '$', 'EUR': '€', 'GBP': '£' };
