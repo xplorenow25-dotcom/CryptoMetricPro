@@ -193,7 +193,7 @@ async function loadTicker() {
           <div class="ticker-item">
             <strong>${c.symbol}</strong>
             <span class="${isUp ? "green" : "red"}">
-              ${isUp ? "▲" : "▼"} $${price.toLocaleString()}
+              ${isUp ? "▲" : "▼"}
             </span>
             <span>•</span>
           </div>
