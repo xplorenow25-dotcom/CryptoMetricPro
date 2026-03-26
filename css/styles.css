@@ -349,16 +349,15 @@ a:hover { color: var(--accent); }
 .price {
   font-size: 13px;
 }
-/* ======== FAR-LEFT LOGO & TEXT STYLING ======== */
+/* ======== FAR-LEFT LOGO & GREEN PRO TEXT ======== */
 .brand-logo {
     display: flex;
     align-items: center;
     text-decoration: none;
-    /* This ensures it stays locked to the left side */
-    position: relative; 
-    left: 0;
-    transform: none;
+    position: static; /* Removes any old centering */
+    transform: none;  /* Removes any old centering */
     margin-left: 0;
+    z-index: 100;
 }
 .custom-logo {
     max-height: 40px; 
@@ -367,12 +366,11 @@ a:hover { color: var(--accent); }
 }
 .brand-name {
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     font-weight: 800;
     margin-left: 0.5rem; /* Gap between image and text */
     letter-spacing: -0.5px;
 }
 .pro-text {
-    /* This uses the exact same bright green variable from your Profit calculators! */
-    color: var(--accent); 
+    color: var(--accent); /* This uses your exact bright profit-green! */
 }
