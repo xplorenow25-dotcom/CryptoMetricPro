@@ -376,146 +376,64 @@ a:hover { color: var(--accent); }
 .pro-text {
     color: var(--accent); /* This uses your exact bright profit-green! */
 }
-/* CryptoMetricPro Full Inter Font Setup */
+/* CryptoMetricPro Safe Font + Blog Setup */
 
 /* Import Inter font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* ===== General Settings ===== */
-body, html {
+/* Apply font globally (SAFE – no layout changes) */
+body {
     font-family: 'Inter', sans-serif;
-    background-color: #0B0F19;
-    color: #E0E0E0;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.7;
-    margin: 0;
-    padding: 0;
 }
 
-/* ===== Headings ===== */
-h1, h2, h3, h4, h5, h6 {
+/* Ensure buttons & inputs also use Inter */
+button, input, textarea, select {
     font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: #FFFFFF;
-    line-height: 1.3;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
 }
 
-/* Optional: specific heading sizes */
-h1 { font-size: 36px; }
-h2 { font-size: 30px; }
-h3 { font-size: 24px; }
-h4 { font-size: 20px; }
-h5 { font-size: 18px; }
-h6 { font-size: 16px; }
-
-/* ===== Paragraphs ===== */
-p, li, span, a {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 17px;
-    color: #E0E0E0;
-    line-height: 1.7;
-    margin-bottom: 1em;
-}
-
-/* ===== Links ===== */
-a {
-    color: #4D8AFF; /* modern blue */
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-
-/* ===== Buttons ===== */
-button, .btn {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    background-color: #4D8AFF;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-button:hover, .btn:hover {
-    background-color: #3670D0;
-}
-
-/* ===== Blog / Article Section ===== */
+/* ===== Blog / Article Styling ONLY ===== */
 .article-body {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
     font-size: 17px;
     line-height: 1.7;
     color: #E0E0E0;
     max-width: 750px;
     margin: 0 auto;
-    padding: 20px;
 }
 
-.article-body h1, .article-body h2, .article-body h3, .article-body h4 {
+/* Headings inside blog ONLY */
+.article-body h1,
+.article-body h2,
+.article-body h3,
+.article-body h4 {
     font-weight: 700;
     color: #FFFFFF;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
 }
 
+/* Paragraph spacing */
 .article-body p {
     margin-bottom: 1em;
 }
 
+/* Links inside blog */
 .article-body a {
     color: #4D8AFF;
+    text-decoration: none;
 }
+
 .article-body a:hover {
     text-decoration: underline;
 }
 
-.article-body ul, .article-body ol {
+/* Lists */
+.article-body ul,
+.article-body ol {
     padding-left: 1.5em;
     margin-bottom: 1em;
 }
 
+/* Bold text */
 .article-body strong {
     font-weight: 600;
-}
-
-/* ===== Hero Section ===== */
-.hero {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: #FFFFFF;
-    text-align: center;
-    padding: 80px 20px;
-}
-
-/* ===== Navigation / Menu ===== */
-.navbar {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    background-color: #0B0F19;
-    color: #E0E0E0;
-    padding: 15px 30px;
-}
-.navbar a {
-    color: #E0E0E0;
-    text-decoration: none;
-    margin-right: 20px;
-    font-weight: 500;
-}
-.navbar a:hover {
-    color: #4D8AFF;
-}
-
-/* ===== Footer ===== */
-footer {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    color: #A0A0A0;
-    background-color: #0B0F19;
-    text-align: center;
-    padding: 20px;
 }
