@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | CryptoCalcPro</title>
+    <title>Contact Us | CryptoMetricPro</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -11,8 +11,9 @@
     <!-- MODERN APP NAVBAR -->
     <nav class="navbar modern-nav">
         <div class="container nav-container">
-            <a href="index.html" class="logo-box">CMP</a>
-            <a href="index.html" class="nav-title">CryptoCalc<span>Pro</span></a>
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="CryptoMetricPro Logo" class="custom-logo">
+            </a>
             <button class="mobile-menu-btn" id="menu-toggle">☰</button>
         </div>
     </nav>
@@ -21,20 +22,20 @@
     <div class="menu-overlay" id="menu-overlay"></div>
     <div class="side-drawer" id="side-drawer">
         <div class="drawer-header">
-            <div class="logo-box">CMP</div>
-            <a href="index.html" class="nav-title">CryptoCalc<span>Pro</span></a>
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="CryptoMetricPro" class="custom-logo">
+            </a>
             <button class="close-btn" id="menu-close">✕</button>
         </div>
         <ul class="drawer-links">
             <li><a href="index.html">Calculators Home</a></li>
-            <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="blog/index.html">Blog & News</a></li>
             <li><a href="learn/index.html">Education Hub</a></li>
             <li><a href="contact.html" class="active-link">Contact Support</a></li>
         </ul>
     </div>
 
     <main class="container">
-        
         <section class="hero text-center" style="padding-bottom: 1rem;">
             <h1 class="hero-title">Contact Support</h1>
             <p class="hero-subtitle" style="margin-bottom: 2rem;">Have a question about our tools or need to report a bug? Reach out below.</p>
@@ -43,40 +44,38 @@
         <!-- MODERN FORM CONTAINER -->
         <div class="calc-card-modern" style="margin-bottom: 4rem; padding-bottom: 2rem;">
             <form action="#" method="POST" id="contact-form" style="padding-top: 1rem;">
-                
                 <div class="input-block">
                     <label>Full Name</label>
                     <div class="input-wrapper">
                         <input type="text" id="name" name="name" placeholder="Enter your name" required>
                     </div>
                 </div>
-
                 <div class="input-block" style="margin-top: 1rem;">
                     <label>Email Address</label>
                     <div class="input-wrapper">
                         <input type="email" id="email" name="email" placeholder="john@example.com" required>
                     </div>
                 </div>
-
                 <div class="input-block" style="margin-top: 1rem;">
                     <label>Message</label>
                     <div class="input-wrapper" style="align-items: flex-start; padding-top: 0.8rem;">
                         <textarea class="modern-textarea" id="message" name="message" placeholder="How can we help?" required></textarea>
                     </div>
                 </div>
-
                 <div class="input-block" style="margin-top: 1.5rem; text-align: center;">
                     <button type="submit" class="btn-green" style="width: 100%; font-size: 1.1rem; padding: 0.8rem;">Send Message</button>
                 </div>
             </form>
         </div>
-
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER WITH CUSTOM LOGO -->
     <footer class="site-footer">
         <div class="container text-center">
-            <h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.4rem;">CryptoCalcPro</h3>
+            <div style="margin-bottom: 1rem; display: flex; justify-content: center;">
+                <img src="logo.png" alt="CryptoMetricPro" style="max-height: 50px; width: auto; object-fit: contain;">
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; max-width: 400px; margin-left: auto; margin-right: auto;">Providing retail traders with fast, secure, and professional position planning tools.</p>
             
             <div class="footer-links" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
                 <a href="about.html" style="font-weight: 500;">About Us</a>
@@ -85,7 +84,6 @@
                 <a href="terms.html" style="font-weight: 500;">Terms of Service</a>
                 <a href="disclaimer.html" style="font-weight: 500;">Disclaimer</a>
             </div>
-            
             <p style="color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 CryptoCalcPro. All rights reserved.</p>
         </div>
     </footer>
