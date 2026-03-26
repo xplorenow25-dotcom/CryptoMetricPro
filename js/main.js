@@ -204,3 +204,12 @@ async function loadTicker() {
 // Run
 loadTicker();
 setInterval(loadTicker, 60000);
+// --- SEAMLESS INFINITE TICKER LOGIC ---
+    // Waits 2 seconds for your CoinGecko API to load prices, then clones the boxes
+    setTimeout(() => {
+        const track = document.getElementById('crypto-ticker-track');
+        if(track) {
+            const content = track.innerHTML;
+            track.innerHTML = content + content; // Duplicates the cards for an infinite scroll loop
+        }
+    }, 2000);
