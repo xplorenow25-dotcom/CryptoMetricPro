@@ -3,7 +3,7 @@
 // ==========================================
 function switchTab(tabName) {
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    if(event && event.target) event.target.classList.add('active');
     
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     const targetTab = document.getElementById('tab-' + tabName);
@@ -11,7 +11,7 @@ function switchTab(tabName) {
 
     const titles = { 'spot': 'Spot Calculator', 'futures': 'Futures Calculator', 'fees': 'Fee Calculator' };
     const titleEl = document.getElementById('calc-title');
-    if (titleEl) titleEl.textContent = titles[tabName];
+    if (titleEl && titles[tabName]) titleEl.textContent = titles[tabName];
 }
 
 function closeMenu() {
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateCurrency(currency) {
-        document.querySelectorAll('.currency-symbol').forEach(el => el.textContent = symbols[currency]);
+        document.querySelectorAll('.currency-symbol').forEach(el => el.textContent = symbols[currency] || '$');
         document.querySelectorAll('.currency-label').forEach(el => el.textContent = currency);
     }
 
@@ -96,20 +96,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const netProfit = grossVal - inv - totalFees;
         const roi = (netProfit / inv) * 100;
 
-        document.getElementById('spot-pnl').textContent = formatCur(netProfit);
-        document.getElementById('spot-roi').textContent = formatCur(roi);
-        document.getElementById('spot-coins').textContent = formatCur(coins);
-        document.getElementById('spot-gross').textContent = formatCur(grossVal);
-        document.getElementById('spot-total-fees').textContent = formatCur(totalFees);
+        if(document.getElementById('spot-pnl')) document.getElementById('spot-pnl').textContent = formatCur(netProfit);
+        if(document.getElementById('spot-roi')) document.getElementById('spot-roi').textContent = formatCur(roi);
+        if(document.getElementById('spot-coins')) document.getElementById('spot-coins').textContent = formatCur(coins);
+        if(document.getElementById('spot-gross')) document.getElementById('spot-gross').textContent = formatCur(grossVal);
+        if(document.getElementById('spot-total-fees')) document.getElementById('spot-total-fees').textContent = formatCur(totalFees);
 
         const valColor = document.getElementById('spot-pnl-val');
         const pillColor = document.getElementById('spot-roi-pill');
         if(netProfit < 0) { 
-            valColor.className = "pnl-value loss"; pillColor.className = "roi-pill loss";
-            document.getElementById('spot-pnl-sign').textContent = "-"; document.getElementById('spot-roi-sign').textContent = "-";
+            if(valColor) valColor.className = "pnl-value loss"; 
+            if(pillColor) pillColor.className = "roi-pill loss";
+            if(document.getElementById('spot-pnl-sign')) document.getElementById('spot-pnl-sign').textContent = "-"; 
+            if(document.getElementById('spot-roi-sign')) document.getElementById('spot-roi-sign').textContent = "-";
         } else { 
-            valColor.className = "pnl-value profit"; pillColor.className = "roi-pill profit";
-            document.getElementById('spot-pnl-sign').textContent = "+"; document.getElementById('spot-roi-sign').textContent = "+";
+            if(valColor) valColor.className = "pnl-value profit"; 
+            if(pillColor) pillColor.className = "roi-pill profit";
+            if(document.getElementById('spot-pnl-sign')) document.getElementById('spot-pnl-sign').textContent = "+"; 
+            if(document.getElementById('spot-roi-sign')) document.getElementById('spot-roi-sign').textContent = "+";
         }
     }
     const spotInputs =['spot-inv', 'spot-buy', 'spot-sell', 'spot-fee'];
@@ -117,8 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 7. FUTURES CALCULATOR ---
     let isLong = true;
-    document.getElementById('btn-long')?.addEventListener('click', (e) => { isLong = true; e.target.classList.add('active'); document.getElementById('btn-short').classList.remove('active'); calcFut(); });
-    document.getElementById('btn-short')?.addEventListener('click', (e) => { isLong = false; e.target.classList.add('active'); document.getElementById('btn-long').classList.remove('active'); calcFut(); });
+    document.getElementById('btn-long')?.addEventListener('click', (e) => { isLong = true; e.target.classList.add('active'); document.getElementById('btn-short')?.classList.remove('active'); calcFut(); });
+    document.getElementById('btn-short')?.addEventListener('click', (e) => { isLong = false; e.target.classList.add('active'); document.getElementById('btn-long')?.classList.remove('active'); calcFut(); });
 
     function calcFut() {
         const ent = getVal('fut-entry'), ext = getVal('fut-exit'), lev = getVal('fut-lev'), mar = getVal('fut-margin'), feePct = getVal('fut-fee');
@@ -133,34 +137,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalFees = (size * (feePct / 100)) + (extSize * (feePct / 100)); 
         
         let pnl = 0, liq = 0;
+        const dirDisp = document.getElementById('fut-disp-dir');
         if (isLong) {
             pnl = (extSize - size) - totalFees;
             liq = ent - (ent / lev); 
-            document.getElementById('fut-disp-dir').innerHTML = "▲ Long";
-            document.getElementById('fut-disp-dir').style.color = "var(--accent)";
+            if(dirDisp) { dirDisp.innerHTML = "▲ Long"; dirDisp.style.color = "var(--accent)"; }
         } else {
             pnl = (size - extSize) - totalFees;
             liq = ent + (ent / lev); 
-            document.getElementById('fut-disp-dir').innerHTML = "▼ Short";
-            document.getElementById('fut-disp-dir').style.color = "var(--accent-loss)";
+            if(dirDisp) { dirDisp.innerHTML = "▼ Short"; dirDisp.style.color = "var(--accent-loss)"; }
         }
         const roi = (pnl / mar) * 100;
 
-        document.getElementById('fut-pnl').textContent = formatCur(pnl);
-        document.getElementById('fut-roi').textContent = formatCur(roi);
-        document.getElementById('fut-size').textContent = formatCur(size);
-        document.getElementById('fut-disp-lev').textContent = formatCur(lev);
-        document.getElementById('fut-fees-total').textContent = formatCur(totalFees);
-        document.getElementById('fut-liq').textContent = liq > 0 ? formatCur(liq) : "0.00";
+        if(document.getElementById('fut-pnl')) document.getElementById('fut-pnl').textContent = formatCur(pnl);
+        if(document.getElementById('fut-roi')) document.getElementById('fut-roi').textContent = formatCur(roi);
+        if(document.getElementById('fut-size')) document.getElementById('fut-size').textContent = formatCur(size);
+        if(document.getElementById('fut-disp-lev')) document.getElementById('fut-disp-lev').textContent = formatCur(lev);
+        if(document.getElementById('fut-fees-total')) document.getElementById('fut-fees-total').textContent = formatCur(totalFees);
+        if(document.getElementById('fut-liq')) document.getElementById('fut-liq').textContent = liq > 0 ? formatCur(liq) : "0.00";
 
         const valColor = document.getElementById('fut-pnl-val');
         const pillColor = document.getElementById('fut-roi-pill');
         if(pnl < 0) { 
-            valColor.className = "pnl-value loss"; pillColor.className = "roi-pill loss";
-            document.getElementById('fut-pnl-sign').textContent = "-"; document.getElementById('fut-roi-sign').textContent = "-";
+            if(valColor) valColor.className = "pnl-value loss"; 
+            if(pillColor) pillColor.className = "roi-pill loss";
+            if(document.getElementById('fut-pnl-sign')) document.getElementById('fut-pnl-sign').textContent = "-"; 
+            if(document.getElementById('fut-roi-sign')) document.getElementById('fut-roi-sign').textContent = "-";
         } else { 
-            valColor.className = "pnl-value profit"; pillColor.className = "roi-pill profit";
-            document.getElementById('fut-pnl-sign').textContent = "+"; document.getElementById('fut-roi-sign').textContent = "+";
+            if(valColor) valColor.className = "pnl-value profit"; 
+            if(pillColor) pillColor.className = "roi-pill profit";
+            if(document.getElementById('fut-pnl-sign')) document.getElementById('fut-pnl-sign').textContent = "+"; 
+            if(document.getElementById('fut-roi-sign')) document.getElementById('fut-roi-sign').textContent = "+";
         }
     }
     const futInputs =['fut-entry', 'fut-exit', 'fut-lev', 'fut-margin', 'fut-fee'];
@@ -177,17 +184,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const feeCost = size * (pct / 100);
         const amountAfter = size - feeCost;
 
-        document.getElementById('fee-total').textContent = formatCur(feeCost);
-        document.getElementById('fee-after').textContent = formatCur(amountAfter);
+        if(document.getElementById('fee-total')) document.getElementById('fee-total').textContent = formatCur(feeCost);
+        if(document.getElementById('fee-after')) document.getElementById('fee-after').textContent = formatCur(amountAfter);
     }
-    const feeInputs =['fee-size', 'fee-pct'];
+    const feeInputs = ['fee-size', 'fee-pct'];
     feeInputs.forEach(id => document.getElementById(id)?.addEventListener('input', calcFees));
 
     // ==========================================
     // --- 9. GLOBALLY UNLOCKED LIVE TICKER ---
     // ==========================================
     
-    // 1. Instantly clone the track so it scrolls immediately
     const track = document.getElementById('crypto-ticker-track');
     if(track && !track.dataset.cloned) {
         const content = track.innerHTML;
@@ -195,21 +201,19 @@ document.addEventListener('DOMContentLoaded', () => {
         track.dataset.cloned = "true"; 
     }
 
-    // 2. Fetch live prices using CoinCap API (No regional blocks, no CORS issues)
     async function fetchCryptoPrices() {
         try {
-            // CoinCap is an open, globally accessible API
+            // CoinCap open API
             const response = await fetch('https://api.coincap.io/v2/assets?ids=bitcoin,ethereum,xrp,binance-coin,solana');
             if (!response.ok) throw new Error('API blocked');
             const result = await response.json();
 
             const formatPrice = (priceStr) => {
                 const price = parseFloat(priceStr);
-                if (price < 2) return '$' + price.toFixed(4); // Shows 4 decimals for XRP
+                if (price < 2) return '$' + price.toFixed(4);
                 return '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             };
 
-            // Map CoinCap IDs to your HTML classes
             const symbolMap = {
                 'bitcoin': 'price-btc',
                 'ethereum': 'price-eth',
@@ -218,22 +222,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 'solana': 'price-sol'
             };
 
-            // Instantly updates all scrolling numbers on the screen
-            result.data.forEach(coin => {
-                const coinClass = symbolMap[coin.id];
-                if(coinClass) {
-                    const elements = document.querySelectorAll(`.${coinClass}`);
-                    elements.forEach(el => el.textContent = formatPrice(coin.priceUsd));
-                }
-            });
-
+            if(result && result.data) {
+                result.data.forEach(coin => {
+                    const coinClass = symbolMap[coin.id];
+                    if(coinClass) {
+                        const elements = document.querySelectorAll(`.${coinClass}`);
+                        elements.forEach(el => el.textContent = formatPrice(coin.priceUsd));
+                    }
+                });
+            }
         } catch (error) {
-            console.log("Waiting for open network connection...");
+            console.log("Waiting for network connection...");
         }
     }
 
-    // Fetch live prices immediately, and auto-update every 10 seconds!
     fetchCryptoPrices();
-    setInterval(fetchCryptoPrices, 10000);
+    setInterval(fetchCryptoPrices, 10000); 
 
-});
+}); // <-- This final bracket is what got deleted last time!
