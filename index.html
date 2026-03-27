@@ -103,124 +103,194 @@
 
         <div class="app-layout">
             
-            <!-- SPOT CALCULATOR TAB -->
-            <div id="tab-spot" class="calc-card-modern tab-content active">
-                <div class="input-block">
-                    <label>Investment Amount <span class="tooltip" data-tooltip="Total money you are investing">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="spot-inv" placeholder="1000">
-                        <span class="currency-label">USD</span>
+            <!-- ================= SPOT CALCULATOR ================= -->
+            <div id="tab-spot" class="tab-content active">
+                
+                <!-- INPUTS CARD -->
+                <div class="premium-card">
+                    <div class="card-header"><span class="dash-icon"></span> TRADE INPUTS</div>
+                    
+                    <div class="input-block">
+                        <label>Investment Amount</label>
+                        <div class="input-wrapper">
+                            <span class="prefix currency-symbol">$</span>
+                            <input type="number" id="spot-inv" placeholder="1000.00">
+                            <span class="suffix currency-label">USD</span>
+                        </div>
                     </div>
-                </div>
-                <div class="input-block">
-                    <label>Buy Price <span class="tooltip" data-tooltip="Price of 1 coin when you buy">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="spot-buy" placeholder="45000">
-                        <span class="currency-label">USD</span>
+                    <div class="input-block">
+                        <label>Buy Price</label>
+                        <div class="input-wrapper">
+                            <span class="prefix currency-symbol">$</span>
+                            <input type="number" id="spot-buy" placeholder="45000.00">
+                            <span class="suffix currency-label">USD</span>
+                        </div>
                     </div>
-                </div>
-                <div class="input-block">
-                    <label>Sell Price <span class="tooltip" data-tooltip="Price of 1 coin when you sell">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="spot-sell" placeholder="50000">
-                        <span class="currency-label">USD</span>
+                    <div class="input-block">
+                        <label>Sell Price</label>
+                        <div class="input-wrapper">
+                            <span class="prefix currency-symbol">$</span>
+                            <input type="number" id="spot-sell" placeholder="50000.00">
+                            <span class="suffix currency-label">USD</span>
+                        </div>
                     </div>
-                </div>
-                <div class="input-block">
-                    <label>Exchange Fee <span class="tooltip" data-tooltip="Average exchange fee (e.g. Binance is 0.1%)">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="spot-fee" placeholder="0.1" value="0.1">
-                        <span style="color: #9CA3AF;">%</span>
+                    <div class="input-block">
+                        <label>Exchange Fee</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="spot-fee" placeholder="0.1" value="0.1" style="padding-left: 1rem;">
+                            <span class="suffix">%</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="result-block-modern">
-                    <p class="result-label">Net Profit / Loss</p>
-                    <h3 class="result-main"><span class="currency-symbol">$</span><span id="spot-profit">0.00</span></h3>
-                    <div class="result-grid">
-                        <p class="result-sub">ROI: <strong id="spot-roi" style="color: #fff;">0.00%</strong></p>
-                        <p class="result-sub">Total Fees: <strong style="color: #fff;"><span class="currency-symbol">$</span><span id="spot-total-fees">0.00</span></strong></p>
+                <!-- RESULTS CARD -->
+                <div class="premium-card" style="margin-top: 1rem;">
+                    <div class="card-header"><span class="dash-icon"></span> RESULTS</div>
+                    
+                    <!-- Empty State -->
+                    <div class="empty-state" id="spot-empty">
+                        <div class="empty-icon">📈</div>
+                        <p>Fill in your trade details to see results</p>
+                    </div>
+
+                    <!-- Filled State -->
+                    <div class="filled-state hidden" id="spot-filled">
+                        <div class="pnl-section">
+                            <p class="pnl-label">NET PROFIT / LOSS</p>
+                            <h2 class="pnl-value" id="spot-pnl-val"><span id="spot-pnl-sign">+</span><span class="currency-symbol">$</span><span id="spot-pnl">0.00</span></h2>
+                            <div class="roi-pill" id="spot-roi-pill"><span id="spot-roi-sign">+</span><span id="spot-roi">0.00</span>% ROI</div>
+                        </div>
+                        <ul class="results-list">
+                            <li><span class="res-label">Total Coins</span><span class="res-val" id="spot-coins">0.00</span></li>
+                            <li><span class="res-label">Gross Value</span><span class="res-val"><span class="currency-symbol">$</span><span id="spot-gross">0.00</span></span></li>
+                            <li><span class="res-label">Total Fees</span><span class="res-val" style="color: var(--accent-loss);">-<span class="currency-symbol">$</span><span id="spot-total-fees">0.00</span></span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- FUTURES CALCULATOR TAB -->
-            <div id="tab-futures" class="calc-card-modern tab-content">
-                <div class="toggle-switch">
-                    <input type="radio" id="pos-long" name="fut-position" value="long" checked>
-                    <label for="pos-long">Long (Buy)</label>
-                    <input type="radio" id="pos-short" name="fut-position" value="short">
-                    <label for="pos-short">Short (Sell)</label>
-                </div>
-                <div class="input-block">
-                    <label>Initial Margin <span class="tooltip" data-tooltip="Your actual money used as collateral">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="fut-margin" placeholder="500">
-                        <span class="currency-label">USD</span>
+            <!-- ================= FUTURES CALCULATOR ================= -->
+            <div id="tab-futures" class="tab-content">
+                
+                <!-- INPUTS CARD -->
+                <div class="premium-card">
+                    <div class="card-header"><span class="dash-icon"></span> TRADE INPUTS</div>
+                    
+                    <div class="input-block" style="margin-bottom: 1.5rem;">
+                        <label>Direction</label>
+                        <div class="direction-toggle">
+                            <button class="dir-btn long active" id="btn-long">▲ LONG</button>
+                            <button class="dir-btn short" id="btn-short">▼ SHORT</button>
+                        </div>
                     </div>
-                </div>
-                <div class="input-block">
-                    <label>Leverage <span class="tooltip" data-tooltip="Multiplier applied to your margin">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="fut-lev" placeholder="10" value="10">
-                        <span style="color: #9CA3AF;">x</span>
+
+                    <div class="input-block">
+                        <label>Entry Price</label>
+                        <div class="input-wrapper">
+                            <span class="prefix currency-symbol">$</span>
+                            <input type="number" id="fut-entry" placeholder="45000.00">
+                            <span class="suffix currency-label">USD</span>
+                        </div>
                     </div>
-                </div>
-                <div class="input-block">
-                    <label>Entry Price <span class="tooltip" data-tooltip="Price where you open the position">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="fut-entry" placeholder="60000">
-                        <span class="currency-label">USD</span>
+                    <div class="input-block">
+                        <label>Exit Price</label>
+                        <div class="input-wrapper">
+                            <span class="prefix currency-symbol">$</span>
+                            <input type="number" id="fut-exit" placeholder="50000.00">
+                            <span class="suffix currency-label">USD</span>
+                        </div>
                     </div>
-                </div>
-                <div class="input-block">
-                    <label>Exit Price <span class="tooltip" data-tooltip="Your target take-profit or stop-loss">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="fut-exit" placeholder="62000">
-                        <span class="currency-label">USD</span>
+                    <div class="input-block">
+                        <label>Leverage</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="fut-lev" placeholder="10" value="10" style="padding-left: 1rem;">
+                            <span class="suffix">×</span>
+                        </div>
                     </div>
-                </div>
-                <div class="input-block">
-                    <label>Taker Fee <span class="tooltip" data-tooltip="Fee taken when opening and closing position">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="fut-fee" placeholder="0.04" value="0.04">
-                        <span style="color: #9CA3AF;">%</span>
+                    <div class="input-block">
+                        <label>Margin</label>
+                        <div class="input-wrapper">
+                            <span class="prefix currency-symbol">$</span>
+                            <input type="number" id="fut-margin" placeholder="1000.00">
+                            <span class="suffix currency-label">USD</span>
+                        </div>
+                    </div>
+                    <div class="input-block">
+                        <label>Fee %</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="fut-fee" placeholder="0.05" value="0.05" style="padding-left: 1rem;">
+                            <span class="suffix">%</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="result-block-modern">
-                    <p class="result-label">Estimated PnL (After Fees)</p>
-                    <h3 class="result-main"><span class="currency-symbol">$</span><span id="fut-profit">0.00</span></h3>
-                    <div class="result-grid">
-                        <p class="result-sub">ROI: <strong id="fut-roi" style="color: #fff;">0.00%</strong></p>
-                        <p class="result-sub">Position Size: <strong style="color: #fff;"><span class="currency-symbol">$</span><span id="fut-size">0.00</span></strong></p>
-                        <p class="result-sub" style="grid-column: span 2; color: var(--accent-loss);">Liquidation Price: <strong><span class="currency-symbol">$</span><span id="fut-liq">0.00</span></strong></p>
+                <!-- RESULTS CARD -->
+                <div class="premium-card" style="margin-top: 1rem;">
+                    <div class="card-header"><span class="dash-icon"></span> RESULTS</div>
+                    
+                    <div class="empty-state" id="fut-empty">
+                        <div class="empty-icon">📈</div>
+                        <p>Fill in your trade details to see results</p>
+                    </div>
+
+                    <div class="filled-state hidden" id="fut-filled">
+                        <div class="pnl-section">
+                            <p class="pnl-label">ESTIMATED PNL</p>
+                            <h2 class="pnl-value" id="fut-pnl-val"><span id="fut-pnl-sign">+</span><span class="currency-symbol">$</span><span id="fut-pnl">0.00</span></h2>
+                            <div class="roi-pill" id="fut-roi-pill"><span id="fut-roi-sign">+</span><span id="fut-roi">0.00</span>% ROI on Margin</div>
+                        </div>
+
+                        <ul class="results-list">
+                            <li><span class="res-label">Position Size</span><span class="res-val"><span class="currency-symbol">$</span><span id="fut-size">0.00</span></span></li>
+                            <li><span class="res-label">Leverage</span><span class="res-val"><span id="fut-disp-lev">0</span>.00×</span></li>
+                            <li><span class="res-label">Direction</span><span class="res-val" id="fut-disp-dir" style="color: var(--accent);">▲ Long</span></li>
+                            <li><span class="res-label">Total Fees</span><span class="res-val" style="color: var(--accent-loss);">-<span class="currency-symbol">$</span><span id="fut-fees-total">0.00</span></span></li>
+                            <li><span class="res-label">Liq. Price (approx)</span><span class="res-val" style="color: var(--accent-loss);"><span class="currency-symbol">$</span><span id="fut-liq">0.00</span></span></li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <span class="warn-icon">⚠</span>
+                            <p>Liquidation price is approximate. Verify on your exchange.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- FEES CALCULATOR TAB -->
-            <div id="tab-fees" class="calc-card-modern tab-content">
-                <div class="input-block">
-                    <label>Trade Amount <span class="tooltip" data-tooltip="Total volume of your trade">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="fee-size" placeholder="10000">
-                        <span class="currency-label">USD</span>
+            <!-- ================= FEES CALCULATOR ================= -->
+            <div id="tab-fees" class="tab-content">
+                <div class="premium-card">
+                    <div class="card-header"><span class="dash-icon"></span> TRADE INPUTS</div>
+                    <div class="input-block">
+                        <label>Trade Amount</label>
+                        <div class="input-wrapper">
+                            <span class="prefix currency-symbol">$</span>
+                            <input type="number" id="fee-size" placeholder="10000.00">
+                            <span class="suffix currency-label">USD</span>
+                        </div>
                     </div>
-                </div>
-                <div class="input-block">
-                    <label>Fee Percentage <span class="tooltip" data-tooltip="The % your exchange charges">?</span></label>
-                    <div class="input-wrapper">
-                        <input type="number" id="fee-pct" placeholder="0.1" value="0.1">
-                        <span style="color: #9CA3AF;">%</span>
+                    <div class="input-block">
+                        <label>Fee Percentage</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="fee-pct" placeholder="0.1" value="0.1" style="padding-left: 1rem;">
+                            <span class="suffix">%</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="result-block-modern">
-                    <p class="result-label">Fee Cost</p>
-                    <h3 class="result-main loss">-<span class="currency-symbol">$</span><span id="fee-total">0.00</span></h3>
-                    <div class="result-grid" style="grid-template-columns: 1fr;">
-                        <p class="result-sub">Amount After Fee: <strong style="color: #fff;"><span class="currency-symbol">$</span><span id="fee-after">0.00</span></strong></p>
+                <div class="premium-card" style="margin-top: 1rem;">
+                    <div class="card-header"><span class="dash-icon"></span> RESULTS</div>
+                    <div class="empty-state" id="fee-empty">
+                        <div class="empty-icon">📈</div>
+                        <p>Fill in your trade details to see results</p>
+                    </div>
+                    <div class="filled-state hidden" id="fee-filled">
+                        <div class="pnl-section">
+                            <p class="pnl-label">FEE COST</p>
+                            <h2 class="pnl-value loss" style="color: var(--accent-loss);">-<span class="currency-symbol">$</span><span id="fee-total">0.00</span></h2>
+                        </div>
+                        <ul class="results-list">
+                            <li><span class="res-label">Amount After Fee</span><span class="res-val"><span class="currency-symbol">$</span><span id="fee-after">0.00</span></span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
