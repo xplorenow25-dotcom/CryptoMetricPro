@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     feeInputs.forEach(id => document.getElementById(id)?.addEventListener('input', calcFees));
 
     // ==========================================
-    // --- 9. GLOBALLY UNLOCKED LIVE TICKER ---
+    // --- 9. UNBLOCKABLE LIVE TICKER (COINLORE) ---
     // ==========================================
     
     const track = document.getElementById('crypto-ticker-track');
@@ -203,8 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchCryptoPrices() {
         try {
-            // CoinCap open API
-            const response = await fetch('https://api.coincap.io/v2/assets?ids=bitcoin,ethereum,xrp,binance-coin,solana');
+            // Coinlore is a developer data tool, NOT an exchange. 
+            // It completely bypasses regional ISP blocks.
+            const response = await fetch('https://api.coinlore.net/api/tickers/?start=0&limit=100');
             if (!response.ok) throw new Error('API blocked');
             const result = await response.json();
 
@@ -214,29 +215,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 return '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             };
 
+            // Matches the Coinlore symbols to your HTML
             const symbolMap = {
-                'bitcoin': 'price-btc',
-                'ethereum': 'price-eth',
-                'xrp': 'price-xrp',
-                'binance-coin': 'price-bnb',
-                'solana': 'price-sol'
+                'BTC': 'price-btc',
+                'ETH': 'price-eth',
+                'XRP': 'price-xrp',
+                'BNB': 'price-bnb',
+                'SOL': 'price-sol'
             };
 
             if(result && result.data) {
                 result.data.forEach(coin => {
-                    const coinClass = symbolMap[coin.id];
+                    const coinClass = symbolMap[coin.symbol];
                     if(coinClass) {
                         const elements = document.querySelectorAll(`.${coinClass}`);
-                        elements.forEach(el => el.textContent = formatPrice(coin.priceUsd));
+                        elements.forEach(el => el.textContent = formatPrice(coin.price_usd));
                     }
                 });
             }
         } catch (error) {
-            console.log("Waiting for network connection...");
+            console.log("Waiting for network...");
         }
     }
 
+    // Fetches immediately, then silently updates every 15 seconds
     fetchCryptoPrices();
-    setInterval(fetchCryptoPrices, 10000); 
+    setInterval(fetchCryptoPrices, 15000); 
 
-}); // <-- This final bracket is what got deleted last time!
+}); // <-- DO NOT DELETE THIS FINAL BRACKET!
