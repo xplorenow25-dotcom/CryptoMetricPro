@@ -183,7 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const feeInputs =['fee-size', 'fee-pct'];
     feeInputs.forEach(id => document.getElementById(id)?.addEventListener('input', calcFees));
 
-    // --- 9. LIVE BINANCE API & TICKER LOGIC ---
+    // ==========================================
+    // --- 9. GLOBALLY UNLOCKED LIVE TICKER ---
+    // ==========================================
     
     // 1. Instantly clone the track so it scrolls immediately
     const track = document.getElementById('crypto-ticker-track');
@@ -193,12 +195,13 @@ document.addEventListener('DOMContentLoaded', () => {
         track.dataset.cloned = "true"; 
     }
 
-    // 2. Fetch live prices using BINANCE API (No annoying rate limits!)
+    // 2. Fetch live prices using CoinCap API (No regional blocks, no CORS issues)
     async function fetchCryptoPrices() {
         try {
-            const response = await fetch('https://api.binance.com/api/v3/ticker/price?symbols=%5B%22BTCUSDT%22,%22ETHUSDT%22,%22XRPUSDT%22,%22BNBUSDT%22,%22SOLUSDT%22%5D');
+            // CoinCap is an open, globally accessible API
+            const response = await fetch('https://api.coincap.io/v2/assets?ids=bitcoin,ethereum,xrp,binance-coin,solana');
             if (!response.ok) throw new Error('API blocked');
-            const data = await response.json();
+            const result = await response.json();
 
             const formatPrice = (priceStr) => {
                 const price = parseFloat(priceStr);
@@ -206,26 +209,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 return '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             };
 
-            // Map Binance symbols to your HTML classes
+            // Map CoinCap IDs to your HTML classes
             const symbolMap = {
-                'BTCUSDT': 'price-btc',
-                'ETHUSDT': 'price-eth',
-                'XRPUSDT': 'price-xrp',
-                'BNBUSDT': 'price-bnb',
-                'SOLUSDT': 'price-sol'
+                'bitcoin': 'price-btc',
+                'ethereum': 'price-eth',
+                'xrp': 'price-xrp',
+                'binance-coin': 'price-bnb',
+                'solana': 'price-sol'
             };
 
-            // Instantly updates all scrolling numbers
-            data.forEach(item => {
-                const coinClass = symbolMap[item.symbol];
+            // Instantly updates all scrolling numbers on the screen
+            result.data.forEach(coin => {
+                const coinClass = symbolMap[coin.id];
                 if(coinClass) {
                     const elements = document.querySelectorAll(`.${coinClass}`);
-                    elements.forEach(el => el.textContent = formatPrice(item.price));
+                    elements.forEach(el => el.textContent = formatPrice(coin.priceUsd));
                 }
             });
 
         } catch (error) {
-            console.log("Waiting for network connection...");
+            console.log("Waiting for open network connection...");
         }
     }
 
