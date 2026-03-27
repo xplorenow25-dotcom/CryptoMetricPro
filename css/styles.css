@@ -387,7 +387,7 @@ a:hover { color: var(--accent); }
     z-index: 100;
 }
 .custom-logo {
-    max-height: 50px; 
+    max-height: 40px; 
     width: auto;
     object-fit: contain;
 }
