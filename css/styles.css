@@ -340,18 +340,6 @@ a:hover { color: var(--accent); }
     animation: scrollTicker 15s linear infinite; 
 }
 
-/* ======== SMARTPHONE-FRIENDLY PAUSE LOGIC ======== */
-/* 1. For Computers: Pauses when mouse hovers */
-@media (hover: hover) {
-    .ticker-track:hover {
-        animation-play-state: paused;
-    }
-}
-
-/* 2. For Phones: Pauses ONLY while finger is pressing down */
-.ticker-track:active {
-    animation-play-state: paused;
-}
 
 /* The new layout: No box, just text and a right-side divider */
 .ticker-item {
