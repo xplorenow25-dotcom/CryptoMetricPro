@@ -205,43 +205,52 @@ async function loadTicker() {
 loadTicker();
 setInterval(loadTicker, 60000);
 // ==========================================
-    // --- LIVE COINGECKO API & TICKER LOGIC ---
+    // --- PRO LIVE TICKER & AUTO-UPDATE LOGIC --
     // ==========================================
     async function fetchCryptoPrices() {
         try {
-            // Fetch live prices for BTC, ETH, XRP, BNB, and SOL
+            // Fetch live prices
             const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,binancecoin,solana&vs_currencies=usd');
+            if (!response.ok) throw new Error('API busy');
             const data = await response.json();
 
-            // Function to format numbers nicely (e.g., $68,000.00)
+            // Format numbers beautifully
             const formatPrice = (price) => {
-                if (price < 2) return '$' + price.toFixed(4); // For small coins like XRP
+                if (price < 2) return '$' + price.toFixed(4);
                 return '$' + price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             };
 
-            // Inject the live prices into your new HTML cards
-            if(document.getElementById('price-btc')) document.getElementById('price-btc').textContent = formatPrice(data.bitcoin.usd);
-            if(document.getElementById('price-eth')) document.getElementById('price-eth').textContent = formatPrice(data.ethereum.usd);
-            if(document.getElementById('price-xrp')) document.getElementById('price-xrp').textContent = formatPrice(data.ripple.usd);
-            if(document.getElementById('price-bnb')) document.getElementById('price-bnb').textContent = formatPrice(data.binancecoin.usd);
-            if(document.getElementById('price-sol')) document.getElementById('price-sol').textContent = formatPrice(data.solana.usd);
+            // Create a dictionary of the new prices
+            const updates = {
+                'price-btc': data.bitcoin.usd,
+                'price-eth': data.ethereum.usd,
+                'price-xrp': data.ripple.usd,
+                'price-bnb': data.binancecoin.usd,
+                'price-sol': data.solana.usd
+            };
+
+            // This clever loop updates ALL cloned boxes in the infinite scroll instantly!
+            for (const [id, price] of Object.entries(updates)) {
+                const elements = document.querySelectorAll(`[id="${id}"]`);
+                elements.forEach(el => el.textContent = formatPrice(price));
+            }
 
         } catch (error) {
-            console.error("API Error:", error);
-            // If CoinGecko is busy, it shows "Unavailable" instead of being stuck on Loading
-            const ids =['price-btc', 'price-eth', 'price-xrp', 'price-bnb', 'price-sol'];
-            ids.forEach(id => {
-                if(document.getElementById(id)) document.getElementById(id).textContent = "Unavailable";
-            });
-        } finally {
-            // AFTER prices load (or fail), duplicate the cards for the infinite seamless scroll!
-            const track = document.getElementById('crypto-ticker-track');
-            if(track) {
-                const content = track.innerHTML;
-                track.innerHTML = content + content; 
-            }
+            console.log("CoinGecko API resting. Keeping last known prices on screen.");
+            // We DO NOT change the text to "Unavailable" anymore. It just stays as the last price.
         }
     }
 
-    // Run the API fetch immediately when the page loads!
-    fetchCryptoPrices();
+    // 1. Run the fetch immediately when the page loads
+    fetchCryptoPrices().then(() => {
+        // 2. Clone the track for the infinite loop ONLY ONCE after the first load
+        const track = document.getElementById('crypto-ticker-track');
+        if(track && !track.dataset.cloned) {
+            const content = track.innerHTML;
+            track.innerHTML = content + content; 
+            track.dataset.cloned = "true"; // Marks it so it never clones twice
+        }
+    });
+
+    // 3. AUTO-UPDATE: Fetch fresh prices entirely in the background every 60 seconds!
+    setInterval(fetchCryptoPrices, 60000);
