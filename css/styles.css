@@ -674,3 +674,45 @@ a:hover {
 @keyframes drawStroke {
     100% { stroke-dashoffset: 0; }
 }
+
+/* ======================================================= */
+/* ======== ULTIMATE SMARTPHONE OVERFLOW FIX ============= */
+/* ======================================================= */
+
+/* 1. Locks the foundation of the website to the exact screen width */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+    position: relative;
+}
+
+/* 2. Forces all boxes to include padding in their width calculation */
+* {
+    box-sizing: border-box;
+}
+
+/* 3. Prevents typing boxes from pushing the screen wider */
+input, textarea, select {
+    max-width: 100%;
+    min-width: 0 !important;
+}
+
+/* 4. Fixes the Results Grid and Tabs for very small phones (like iPhone SE) */
+@media (max-width: 400px) {
+    .result-grid {
+        display: flex !important;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .capsule-nav {
+        padding: 0.2rem;
+    }
+    .tab-btn {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+    .brand-name {
+        font-size: 1.1rem; /* Shrinks logo text slightly on tiny screens */
+    }
+}
