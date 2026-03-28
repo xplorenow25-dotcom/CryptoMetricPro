@@ -587,3 +587,19 @@ button, input, textarea, select {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+/* ======== PERCENTAGE CHANGE TICKER STYLES ======== */
+.ticker-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem; /* Spacing between the price and the percentage */
+}
+
+.ticker-change {
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+/* Dynamic Colors */
+.ticker-change.profit { color: var(--accent); }
+.ticker-change.loss { color: var(--accent-loss); }
