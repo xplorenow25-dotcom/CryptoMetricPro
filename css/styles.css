@@ -604,3 +604,52 @@ button, input, textarea, select {
 .ticker-change.profit { color: var(--accent); }
 .ticker-change.loss { color: var(--accent-loss); }
 
+/* ======== CONTACT FORM SUCCESS STATE ======== */
+.success-state-box {
+    padding: 3rem 1rem;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.success-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+/* The Glowing SVG */
+.checkmark-svg {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 3;
+    stroke: #00FF88; /* The requested bright neon green */
+    stroke-miterlimit: 10;
+    /* This creates the beautiful soft outer glow/neon effect */
+    filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.5)); 
+}
+
+/* Animates the Circle drawing itself */
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 3;
+    stroke-miterlimit: 10;
+    stroke: #00FF88;
+    fill: none;
+    animation: drawStroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+/* Animates the Checkmark drawing itself */
+.checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: drawStroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards; /* 0.6s delay waits for circle to finish */
+}
+
+/* The drawing animation keyframes */
+@keyframes drawStroke {
+    100% { stroke-dashoffset: 0; }
+}
