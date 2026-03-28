@@ -194,10 +194,12 @@ a:hover { color: var(--accent); }
 .warning-box p { color: #EAB308; font-size: 0.85rem; line-height: 1.4; margin: 0; }
 
 /* Affiliate Cards */
-.affiliate-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 1rem; padding: 1.5rem; text-align: center; margin-bottom: 1rem; }
+.affiliate-card { background: var(--card-bg); border: 1px solid rgba(0, 208, 108, 0.4); border-radius: 1rem; padding: 1.5rem; text-align: center; margin-bottom: 1rem; transition: border-color 0.3s, transform 0.3s; }
+.affiliate-card:hover { border-color: #00D06C; transform: translateY(-3px); }
 .affiliate-card h3 { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 1.2rem; color: #fff; }
-.bonus-text { color: var(--accent); font-weight: bold; margin: 0.8rem 0 1.2rem; font-size: 0.9rem; }
-.btn-outline-green { display: inline-block; border: 1px solid var(--accent); color: var(--accent); padding: 0.6rem 1.5rem; border-radius: 0.5rem; font-weight: 600; }
+.bonus-text { color: #00D06C; font-weight: bold; margin: 0.8rem 0 1.2rem; font-size: 0.95rem; }
+.btn-solid-green { display: inline-block; background: #00D06C; color: #0B0F19; padding: 0.7rem 1.8rem; border-radius: 0.5rem; font-weight: 800; transition: transform 0.2s, filter 0.2s; }
+.btn-solid-green:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
 /* ======== NEW BLOG CSS ======== */
 .blog-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1rem; }
