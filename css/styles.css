@@ -477,67 +477,7 @@ a:hover { color: var(--accent); }
 .pro-text {
     color: var(--accent); /* This uses your exact bright profit-green! */
 }
-/* CryptoMetricPro Safe Font + Blog Setup */
 
-/* Import Inter font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-/* Apply font globally (SAFE – no layout changes) */
-body {
-    font-family: 'Inter', sans-serif;
-}
-
-/* Ensure buttons & inputs also use Inter */
-button, input, textarea, select {
-    font-family: 'Inter', sans-serif;
-}
-
-/* ===== Blog / Article Styling ONLY ===== */
-.article-body {
-    font-size: 17px;
-    line-height: 1.7;
-    color: #E0E0E0;
-    max-width: 750px;
-    margin: 0 auto;
-}
-
-/* Headings inside blog ONLY */
-.article-body h1,
-.article-body h2,
-.article-body h3,
-.article-body h4 {
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-}
-
-/* Paragraph spacing */
-.article-body p {
-    margin-bottom: 1em;
-}
-
-/* Links inside blog */
-.article-body a {
-    color: #4D8AFF;
-    text-decoration: none;
-}
-
-.article-body a:hover {
-    text-decoration: underline;
-}
-
-/* Lists */
-.article-body ul,
-.article-body ol {
-    padding-left: 1.5em;
-    margin-bottom: 1em;
-}
-
-/* Bold text */
-.article-body strong {
-    font-weight: 600;
-}
 /* ======================================================= */
 /* ======== DESKTOP & TABLET RESPONSIVENESS UPGRADE ======== */
 /* ======================================================= */
