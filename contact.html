@@ -61,8 +61,10 @@
                     <div class="input-block" style="margin-top: 1rem;">
                         <label>Email Address</label>
                         <div class="input-wrapper">
-                            <!-- type="email" and required ensure browser validation! -->
-                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                            <!-- This advanced pattern only accepts REAL, verified domain endings! -->
+                            <input type="email" id="email" name="email" placeholder="john@example.com" 
+                            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|co|io|info|biz|me|tv|us|uk|ca|au)$" 
+                            title="Please enter a valid email address (e.g., .com, .net, .org, .io)" required>
                         </div>
                     </div>
 
