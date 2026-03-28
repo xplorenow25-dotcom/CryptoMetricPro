@@ -117,17 +117,28 @@
 
     <script src="js/main.js"></script>
     <script>
-        // The Success State Logic
+        // --- BULLETPROOF CONTACT FORM LOGIC ---
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault(); // Stops the page from refreshing
             
-            // Hide the form
-            document.getElementById('form-wrapper').classList.add('hidden');
+            // 1. Grab the exact email the user typed
+            const emailValue = document.getElementById('email').value;
             
-            // Show the success UI with a fade-in effect
-            const successBox = document.getElementById('success-wrapper');
-            successBox.classList.remove('hidden');
+            // 2. The Strict VIP Rule: MUST end perfectly with one of these real domains
+            const strictRegex = /\.(com|net|org|co|io|info|biz|me|tv|us|uk|ca|au)$/i;
+
+            // 3. If they type a fake ending (.bom, .kom) or add slashes at the end...
+            if (!strictRegex.test(emailValue)) {
+                alert("❌ ERROR: Please enter a real, valid email address ending in .com, .net, .org, etc.");
+                return; // STOP THE SCRIPT! Do not show the green checkmark!
+            }
+
+            // 4. If the email is real, hide the form and show the beautiful Success screen
+            document.getElementById('form-wrapper').classList.add('hidden');
+            document.getElementById('success-wrapper').classList.remove('hidden');
         });
     </script>
+</body>
+</html>
 </body>
 </html>
