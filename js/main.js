@@ -203,8 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchCryptoPrices() {
         try {
-            // Coinlore is a developer data tool, NOT an exchange. 
-            // It completely bypasses regional ISP blocks.
             const response = await fetch('https://api.coinlore.net/api/tickers/?start=0&limit=100');
             if (!response.ok) throw new Error('API blocked');
             const result = await response.json();
@@ -215,21 +213,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 return '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             };
 
-            // Matches the Coinlore symbols to your HTML
             const symbolMap = {
-                'BTC': 'price-btc',
-                'ETH': 'price-eth',
-                'XRP': 'price-xrp',
-                'BNB': 'price-bnb',
-                'SOL': 'price-sol'
+                'BTC': 'btc',
+                'ETH': 'eth',
+                'XRP': 'xrp',
+                'BNB': 'bnb',
+                'SOL': 'sol'
             };
 
             if(result && result.data) {
                 result.data.forEach(coin => {
-                    const coinClass = symbolMap[coin.symbol];
-                    if(coinClass) {
-                        const elements = document.querySelectorAll(`.${coinClass}`);
-                        elements.forEach(el => el.textContent = formatPrice(coin.price_usd));
+                    const coinKey = symbolMap[coin.symbol];
+                    if(coinKey) {
+                        // 1. Update the Price
+                        const priceElements = document.querySelectorAll(`.price-${coinKey}`);
+                        priceElements.forEach(el => el.textContent = formatPrice(coin.price_usd));
+                        
+                        // 2. Update the 24h Percentage Change
+                        const changeElements = document.querySelectorAll(`.change-${coinKey}`);
+                        const changeVal = parseFloat(coin.percent_change_24h);
+                        
+                        changeElements.forEach(el => {
+                            if (changeVal >= 0) {
+                                el.textContent = `+${changeVal.toFixed(2)}%`;
+                                el.classList.remove('loss');
+                                el.classList.add('profit');
+                            } else {
+                                el.textContent = `${changeVal.toFixed(2)}%`; // Negative sign is included automatically
+                                el.classList.remove('profit');
+                                el.classList.add('loss');
+                            }
+                        });
                     }
                 });
             }
@@ -238,7 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Fetches immediately, then silently updates every 15 seconds
     fetchCryptoPrices();
     setInterval(fetchCryptoPrices, 15000); 
 
