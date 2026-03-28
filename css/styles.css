@@ -716,3 +716,45 @@ input, textarea, select {
         font-size: 1.1rem; /* Shrinks logo text slightly on tiny screens */
     }
 }
+
+/* ======================================================= */
+/* ======== MASTER SCREEN & CLIPPING FIX ================= */
+/* ======================================================= */
+
+/* 1. Stop the wobble but keep the body perfectly sized */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important; 
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. Bring the text safely away from the edges of the screen */
+.container {
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 1.2rem !important; /* This adds safe space on the left and right! */
+    box-sizing: border-box !important;
+}
+
+/* 3. Fix the logo if it was getting chopped off on the left */
+.brand-logo {
+    margin-left: 0 !important; 
+}
+
+/* 4. Force long words and links to stay inside the screen */
+* {
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
+
+/* 5. Allow the Capsule Buttons to wrap to a second line on very small phones */
+.capsule-nav {
+    flex-wrap: wrap; 
+    gap: 0.5rem;
+}
+.tab-btn {
+    min-width: 70px; /* Ensures buttons don't get too squished */
+}
