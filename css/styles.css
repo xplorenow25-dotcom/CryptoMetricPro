@@ -598,3 +598,47 @@ a:hover { color: var(--accent); }
 @keyframes drawStroke {
     100% { stroke-dashoffset: 0; }
 }
+
+/* ======================================================= */
+/* ======== DESKTOP BLOG ARTICLE READING MODE ======== */
+/* ======================================================= */
+
+@media (min-width: 768px) {
+    /* 1. Expands the article container perfectly for desktop */
+    .article-container { 
+        max-width: 800px !important; 
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+    
+    /* 2. Makes the Headline massive and cinematic */
+    .article-title { 
+        font-size: 3.2rem !important; 
+        margin-top: 2rem;
+        line-height: 1.1;
+    }
+    
+    /* 3. Makes the paragraph text larger and easier on the eyes */
+    .article-body { 
+        font-size: 1.2rem; 
+        line-height: 1.9;
+    }
+    
+    /* 4. Turns the article image into a widescreen panorama */
+    .article-hero-img { 
+        height: 450px !important; 
+        border-radius: 1.5rem;
+    }
+    
+    /* 5. Makes the Back button and Author row larger */
+    .article-container > a {
+        font-size: 1.1rem !important;
+    }
+    .article-author-row img {
+        width: 55px !important;
+        height: 55px !important;
+    }
+    .article-author-row strong {
+        font-size: 1.1rem !important;
+    }
+}
