@@ -3,7 +3,9 @@
 // ==========================================
 function switchTab(tabName) {
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    if(event && event.target) event.target.classList.add('active');
+    // Fixed: Removed deprecated global event object
+    const activeBtn = document.querySelector('.tab-btn.active');
+    if(activeBtn) activeBtn.classList.add('active');
     
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     const targetTab = document.getElementById('tab-' + tabName);
@@ -239,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 el.classList.remove('loss');
                                 el.classList.add('profit');
                             } else {
-                                el.textContent = `${changeVal.toFixed(2)}%`; // Negative sign is included automatically
+                                el.textContent = `${changeVal.toFixed(2)}%`;
                                 el.classList.remove('profit');
                                 el.classList.add('loss');
                             }
@@ -259,7 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const shareBtn = document.getElementById('share-btn');
     if (shareBtn) {
         shareBtn.addEventListener('click', async () => {
-            // Checks if the phone supports Native Sharing (iOS/Android)
             if (navigator.share) {
                 try {
                     await navigator.share({
@@ -270,11 +271,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log('User cancelled share.');
                 }
             } else {
-                // Fallback for older Desktop browsers: Just copy the link
                 navigator.clipboard.writeText(window.location.href);
                 alert("Link copied to clipboard!");
             }
         });
     }
 
-}); // <-- DO NOT DELETE THIS FINAL BRACKET!
+});
