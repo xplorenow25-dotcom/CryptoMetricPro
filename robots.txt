@@ -1,1 +1,4 @@
+User-agent: *
+Allow: /
 
+Sitemap: https://xplorenow25-dotcom.github.io/CryptoMetricPro/sitemap.xml
