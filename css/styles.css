@@ -483,14 +483,21 @@ a:hover { color: var(--accent); }
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* Apply font globally (SAFE – no layout changes) */
+/* Apply font globally */
 body {
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale;   
+    letter-spacing: -0.011em;            
+    line-height: 1.6;
+    color: #1a1a1a; /* Professional dark grey for better readability */
 }
 
 /* Ensure buttons & inputs also use Inter */
 button, input, textarea, select {
     font-family: 'Inter', sans-serif;
 }
+
 
 /* ===== Blog / Article Styling ONLY ===== */
 .article-body {
