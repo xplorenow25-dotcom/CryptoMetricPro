@@ -703,7 +703,7 @@ a:hover { color: var(--accent); }
 }
 
 .footer-legal-text {
-    font-size: 11px;             /* Industry standard for footer disclaimers */
+    font-size: 12px;             /* Industry standard for footer disclaimers */
     color: #888888;              /* Muted grey so it doesn't distract from links */
     line-height: 1.6;            /* Makes the block of text easier to read */
     max-width: 600px;            /* Keeps the text from stretching too wide on desktop */
