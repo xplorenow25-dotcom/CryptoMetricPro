@@ -691,7 +691,7 @@ a:hover { color: var(--accent); }
 
 /* --- Disclaimer Styling for AdSense --- */
 .hero-disclaimer {
-    font-size: 12px;
+    font-size: 13px;
     color: #a0a0a0;
     margin-top: 10px;
     font-style: italic;
