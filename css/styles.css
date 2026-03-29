@@ -688,3 +688,13 @@ a:hover { color: var(--accent); }
     color: var(--accent);
     transform: translateY(-2px);
 }
+
+/* --- Disclaimer Styling for AdSense --- */
+.hero-disclaimer {
+    font-size: 11px;
+    color: #a0a0a0;
+    margin-top: 10px;
+    font-style: italic;
+    display: block; /* Ensures it stays on its own line */
+    text-align: center;
+}
