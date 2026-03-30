@@ -712,3 +712,28 @@ a:hover { color: var(--accent); }
     font-weight: 400;            /* Keeps it thin and clean */
     opacity: 0.85;               /* Blends perfectly with your dark theme */
 }
+
+/* ======== SHARE RESULTS BUTTON ======== */
+.btn-share-result {
+    width: 100%;
+    margin-top: 1.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.8rem;
+    border-radius: 0.8rem;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+.btn-share-result:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+}
