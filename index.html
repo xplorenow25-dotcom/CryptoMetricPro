@@ -127,8 +127,11 @@
             
             <!-- ================= SPOT CALCULATOR ================= -->
             <div id="tab-spot" class="tab-content active">
+                
+                <!-- INPUTS CARD -->
                 <div class="premium-card">
                     <div class="card-header"><span class="dash-icon"></span> TRADE INPUTS</div>
+                    
                     <div class="input-block">
                         <label>Investment Amount</label>
                         <div class="input-wrapper">
@@ -156,19 +159,23 @@
                     <div class="input-block">
                         <label>Exchange Fee</label>
                         <div class="input-wrapper">
-                            <!-- REMOVED THE VALUE="0.1" HERE -->
-                            <input type="number" id="spot-fee" placeholder="0.1" style="padding-left: 1rem;">
+                            <input type="number" id="spot-fee" placeholder="0.1" value="0.1" style="padding-left: 1rem;">
                             <span class="suffix">%</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- RESULTS CARD -->
                 <div class="premium-card" style="margin-top: 1rem;">
                     <div class="card-header"><span class="dash-icon"></span> RESULTS</div>
+                    
+                    <!-- Empty State -->
                     <div class="empty-state" id="spot-empty">
                         <div class="empty-icon">📈</div>
                         <p>Fill in your trade details to see results</p>
                     </div>
+
+                    <!-- Filled State -->
                     <div class="filled-state hidden" id="spot-filled">
                         <div class="pnl-section">
                             <p class="pnl-label">NET PROFIT / LOSS</p>
@@ -186,8 +193,11 @@
 
             <!-- ================= FUTURES CALCULATOR ================= -->
             <div id="tab-futures" class="tab-content">
+                
+                <!-- INPUTS CARD -->
                 <div class="premium-card">
                     <div class="card-header"><span class="dash-icon"></span> TRADE INPUTS</div>
+                    
                     <div class="input-block" style="margin-bottom: 1.5rem;">
                         <label>Direction</label>
                         <div class="direction-toggle">
@@ -195,6 +205,7 @@
                             <button class="dir-btn short" id="btn-short">▼ SHORT</button>
                         </div>
                     </div>
+
                     <div class="input-block">
                         <label>Entry Price</label>
                         <div class="input-wrapper">
@@ -214,8 +225,7 @@
                     <div class="input-block">
                         <label>Leverage</label>
                         <div class="input-wrapper">
-                            <!-- REMOVED THE VALUE="10" HERE -->
-                            <input type="number" id="fut-lev" placeholder="10" style="padding-left: 1rem;">
+                            <input type="number" id="fut-lev" placeholder="10" value="10" style="padding-left: 1rem;">
                             <span class="suffix">×</span>
                         </div>
                     </div>
@@ -230,25 +240,28 @@
                     <div class="input-block">
                         <label>Fee %</label>
                         <div class="input-wrapper">
-                            <!-- REMOVED THE VALUE="0.05" HERE -->
-                            <input type="number" id="fut-fee" placeholder="0.05" style="padding-left: 1rem;">
+                            <input type="number" id="fut-fee" placeholder="0.05" value="0.05" style="padding-left: 1rem;">
                             <span class="suffix">%</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- RESULTS CARD -->
                 <div class="premium-card" style="margin-top: 1rem;">
                     <div class="card-header"><span class="dash-icon"></span> RESULTS</div>
+                    
                     <div class="empty-state" id="fut-empty">
                         <div class="empty-icon">📈</div>
                         <p>Fill in your trade details to see results</p>
                     </div>
+
                     <div class="filled-state hidden" id="fut-filled">
                         <div class="pnl-section">
                             <p class="pnl-label">ESTIMATED PNL</p>
                             <h2 class="pnl-value" id="fut-pnl-val"><span id="fut-pnl-sign">+</span><span class="currency-symbol">$</span><span id="fut-pnl">0.00</span></h2>
                             <div class="roi-pill" id="fut-roi-pill"><span id="fut-roi-sign">+</span><span id="fut-roi">0.00</span>% ROI on Margin</div>
                         </div>
+
                         <ul class="results-list">
                             <li><span class="res-label">Position Size</span><span class="res-val"><span class="currency-symbol">$</span><span id="fut-size">0.00</span></span></li>
                             <li><span class="res-label">Leverage</span><span class="res-val"><span id="fut-disp-lev">0</span>.00×</span></li>
@@ -256,7 +269,11 @@
                             <li><span class="res-label">Total Fees</span><span class="res-val" style="color: var(--accent-loss);">-<span class="currency-symbol">$</span><span id="fut-fees-total">0.00</span></span></li>
                             <li><span class="res-label">Liq. Price (approx)</span><span class="res-val" style="color: var(--accent-loss);"><span class="currency-symbol">$</span><span id="fut-liq">0.00</span></span></li>
                         </ul>
-                        <div class="warning-box"><span class="warn-icon">⚠</span><p>Liquidation price is approximate. Verify on your exchange.</p></div>
+
+                        <div class="warning-box">
+                            <span class="warn-icon">⚠</span>
+                            <p>Liquidation price is approximate. Verify on your exchange.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -276,8 +293,7 @@
                     <div class="input-block">
                         <label>Fee Percentage</label>
                         <div class="input-wrapper">
-                            <!-- REMOVED THE VALUE="0.1" HERE -->
-                            <input type="number" id="fee-pct" placeholder="0.1" style="padding-left: 1rem;">
+                            <input type="number" id="fee-pct" placeholder="0.1" value="0.1" style="padding-left: 1rem;">
                             <span class="suffix">%</span>
                         </div>
                     </div>
