@@ -1,5 +1,5 @@
 // ==========================================
-// --- 1. TAB SWITCHING & AUTO-WIPE LOGIC ---
+// --- 1. TAB & MENU SWITCHING LOGIC ---
 // ==========================================
 function switchTab(tabName) {
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -12,17 +12,6 @@ function switchTab(tabName) {
     const titles = { 'spot': 'Spot Calculator', 'futures': 'Futures Calculator', 'fees': 'Fee Calculator' };
     const titleEl = document.getElementById('calc-title');
     if (titleEl && titles[tabName]) titleEl.textContent = titles[tabName];
-
-    // THIS IS THE MAGIC FIX: Wipes inputs and restores empty states when you switch tabs
-    document.querySelectorAll('.app-layout input[type="number"]').forEach(input => {
-        input.value = ''; 
-        input.dispatchEvent(new Event('input')); 
-    });
-
-    const btnLong = document.getElementById('btn-long');
-    if (btnLong && !btnLong.classList.contains('active')) {
-        btnLong.click();
-    }
 }
 
 function closeMenu() {
@@ -198,12 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if(document.getElementById('fee-total')) document.getElementById('fee-total').textContent = formatCur(feeCost);
         if(document.getElementById('fee-after')) document.getElementById('fee-after').textContent = formatCur(amountAfter);
     }
-    const feeInputs =['fee-size', 'fee-pct'];
+    const feeInputs = ['fee-size', 'fee-pct'];
     feeInputs.forEach(id => document.getElementById(id)?.addEventListener('input', calcFees));
 
     // ==========================================
     // --- 9. UNBLOCKABLE LIVE TICKER (COINLORE) ---
     // ==========================================
+    
     const track = document.getElementById('crypto-ticker-track');
     if(track && !track.dataset.cloned) {
         const content = track.innerHTML;
@@ -223,15 +213,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 return '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             };
 
-            const symbolMap = { 'BTC': 'btc', 'ETH': 'eth', 'XRP': 'xrp', 'BNB': 'bnb', 'SOL': 'sol' };
+            const symbolMap = {
+                'BTC': 'btc',
+                'ETH': 'eth',
+                'XRP': 'xrp',
+                'BNB': 'bnb',
+                'SOL': 'sol'
+            };
 
             if(result && result.data) {
                 result.data.forEach(coin => {
                     const coinKey = symbolMap[coin.symbol];
                     if(coinKey) {
+                        // 1. Update the Price
                         const priceElements = document.querySelectorAll(`.price-${coinKey}`);
                         priceElements.forEach(el => el.textContent = formatPrice(coin.price_usd));
                         
+                        // 2. Update the 24h Percentage Change
                         const changeElements = document.querySelectorAll(`.change-${coinKey}`);
                         const changeVal = parseFloat(coin.percent_change_24h);
                         
@@ -241,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 el.classList.remove('loss');
                                 el.classList.add('profit');
                             } else {
-                                el.textContent = `${changeVal.toFixed(2)}%`;
+                                el.textContent = `${changeVal.toFixed(2)}%`; // Negative sign is included automatically
                                 el.classList.remove('profit');
                                 el.classList.add('loss');
                             }
@@ -256,8 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchCryptoPrices();
     setInterval(fetchCryptoPrices, 15000); 
-
-});
 
     // --- 10. APPLE-STYLE NATIVE SHARE BUTTON ---
     const shareBtn = document.getElementById('share-btn');
