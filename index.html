@@ -173,14 +173,6 @@
                     <div class="empty-state" id="spot-empty">
                         <div class="empty-icon">📈</div>
                         <p>Fill in your trade details to see results</p>
-                        </ul>
-                        <!-- ADD THIS SHARE BUTTON -->
-                        <button class="btn-share-result" onclick="shareResult('spot')">
-                            Share Trade Setup
-                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
-                        </button>
-                    </div>
-                </div>
                     </div>
 
                     <!-- Filled State -->
@@ -195,6 +187,12 @@
                             <li><span class="res-label">Gross Value</span><span class="res-val"><span class="currency-symbol">$</span><span id="spot-gross">0.00</span></span></li>
                             <li><span class="res-label">Total Fees</span><span class="res-val" style="color: var(--accent-loss);">-<span class="currency-symbol">$</span><span id="spot-total-fees">0.00</span></span></li>
                         </ul>
+                        
+                        <!-- SHARE BUTTON PERFECTLY PLACED -->
+                        <button class="btn-share-result" onclick="shareResult('spot')">
+                            Share Trade Setup
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -261,13 +259,6 @@
                     <div class="empty-state" id="fut-empty">
                         <div class="empty-icon">📈</div>
                         <p>Fill in your trade details to see results</p>
-                        </div>
-                        <!-- ADD THIS SHARE BUTTON -->
-                        <button class="btn-share-result" onclick="shareResult('futures')">
-                            Share Trade Setup
-                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
-                        </button>
-                    </div>
                     </div>
 
                     <div class="filled-state hidden" id="fut-filled">
@@ -289,6 +280,12 @@
                             <span class="warn-icon">⚠</span>
                             <p>Liquidation price is approximate. Verify on your exchange.</p>
                         </div>
+                        
+                        <!-- SHARE BUTTON PERFECTLY PLACED -->
+                        <button class="btn-share-result" onclick="shareResult('futures')">
+                            Share Trade Setup
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -319,13 +316,6 @@
                     <div class="empty-state" id="fee-empty">
                         <div class="empty-icon">📈</div>
                         <p>Fill in your trade details to see results</p>
-                        </ul>
-                        <!-- ADD THIS SHARE BUTTON -->
-                        <button class="btn-share-result" onclick="shareResult('fees')">
-                            Share Calculation
-                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
-                        </button>
-                    </div>
                     </div>
                     <div class="filled-state hidden" id="fee-filled">
                         <div class="pnl-section">
@@ -335,6 +325,12 @@
                         <ul class="results-list">
                             <li><span class="res-label">Amount After Fee</span><span class="res-val"><span class="currency-symbol">$</span><span id="fee-after">0.00</span></span></li>
                         </ul>
+                        
+                        <!-- SHARE BUTTON PERFECTLY PLACED -->
+                        <button class="btn-share-result" onclick="shareResult('fees')">
+                            Share Calculation
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+                        </button>
                     </div>
                 </div>
             </div>
