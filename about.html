@@ -7,7 +7,40 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- INCLUDE NAVBAR HERE -->
+    
+   <!-- MODERN APP NAVBAR -->
+    <nav class="navbar modern-nav">
+        <div class="container nav-container">
+            <!-- FAR LEFT: LOGO & TEXT -->
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="CryptoMetricPro Logo" class="custom-logo">
+                <span class="brand-name">CryptoMetric<span class="pro-text">Pro</span></span>
+            </a>
+            
+            <!-- FAR RIGHT: MENU BUTTON -->
+            <button class="mobile-menu-btn" id="menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- MODERN SIDE DRAWER MENU -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <div class="side-drawer" id="side-drawer">
+        <div class="drawer-header">
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="CryptoMetricPro" class="custom-logo">
+                <span class="brand-name">CryptoMetric<span class="pro-text">Pro</span></span>
+            </a>
+            <button class="close-btn" id="menu-close">✕</button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="index.html">Spot Calculator</a></li>
+            <li><a href="index.html">Futures Calculator</a></li>
+            <li><a href="index.html">Fee Calculator</a></li>
+            <li><a href="blog/index.html">Blog & News</a></li>
+            <li><a href="index.html#education">Education Hub</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+        </ul>
+    </div>
 
     <main class="container" style="max-width: 800px; margin-top: 4rem; margin-bottom: 4rem;">
         <h1 style="margin-bottom: 1rem;">About Us</h1>
