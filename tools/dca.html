@@ -171,10 +171,10 @@
         <div class="dca-card" style="margin-top: 2rem;">
             <div class="dca-card-header">PURCHASE BREAKDOWN</div>
             
-            <!-- This wrapper locks the height and stops the shaking! -->
-            <div style="max-height: 350px; overflow-y: auto; overflow-x: auto; padding-right: 0.5rem;">
+            <!-- This new wrapper stops the page from jumping! -->
+            <div class="table-scroll-box">
                 <table class="dca-table">
-                    <thead style="position: sticky; top: 0; background: #121826; z-index: 10; outline: 1px solid rgba(255,255,255,0.05);">
+                    <thead>
                         <tr>
                             <th>Buy #</th>
                             <th>Market Price</th>
@@ -188,6 +188,7 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
 
     </main>
